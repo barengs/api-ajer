@@ -5,10 +5,10 @@ This document provides instructions for deploying the Hybrid LMS application to 
 ## Prerequisites
 
 1. Python 3.8+
-2. PostgreSQL 12+
-3. Redis 6+
-4. Systemd (for service management)
-5. Nginx (reverse proxy)
+2. PostgreSQL 12+ (recommended) or SQLite
+3. Redis 6+ (optional but recommended)
+4. Systemd (for service management) or cPanel/Passenger (for shared hosting)
+5. Nginx (reverse proxy) or Apache
 6. SSL Certificate
 
 ## Directory Structure
@@ -19,11 +19,13 @@ This document provides instructions for deploying the Hybrid LMS application to 
 ├── hybrid_lms/
 │   ├── settings.py
 │   ├── settings_prod.py
-│   └── ...
+│   └── settings_rumahweb.py
 ├── requirements.txt
 ├── requirements-prod.txt
 ├── gunicorn.conf.py
 ├── deploy.sh
+├── setup_rumahweb.sh
+├── passenger_wsgi.py
 ├── hybridlms.service
 ├── celery-worker.service
 └── ...
@@ -97,7 +99,7 @@ CORS_ALLOWED_ORIGINS=https://yourdomain.com,https://www.yourdomain.com
 ### 5. Database Setup
 
 ```bash
-# Create database
+# Create database (if using PostgreSQL)
 createdb hybrid_lms_production
 
 # Run migrations
@@ -110,9 +112,13 @@ python manage.py createsuperuser --settings=hybrid_lms.settings_prod
 python manage.py collectstatic --noinput --settings=hybrid_lms.settings_prod
 ```
 
-### 6. Service Configuration
+## Deployment Options
 
-#### Application Service (Gunicorn)
+### Option 1: VPS/Server Deployment (Traditional)
+
+#### Service Configuration
+
+##### Application Service (Gunicorn)
 
 1. Copy the service file to systemd directory:
 
@@ -132,7 +138,7 @@ python manage.py collectstatic --noinput --settings=hybrid_lms.settings_prod
    sudo systemctl start hybridlms.service
    ```
 
-#### Celery Worker Service
+##### Celery Worker Service
 
 1. Copy the service file to systemd directory:
 
@@ -161,7 +167,7 @@ python manage.py collectstatic --noinput --settings=hybrid_lms.settings_prod
    sudo systemctl start celery-worker.service
    ```
 
-### 7. Nginx Configuration
+#### Nginx Configuration
 
 Create an Nginx configuration file:
 
@@ -198,90 +204,177 @@ server {
     location /media/ {
         alias /path/to/hybridLms/media/;
         expires 7d;
-        add_header Cache-Control "public, no-transform";
+        add_header Cache-Control "public";
     }
 }
 ```
 
-### 8. Monitoring and Health Checks
+### Option 2: Shared Hosting Deployment (Rumahweb/cPanel)
+
+#### Initial Setup
+
+1. **Login to cPanel**
+
+   - Access your cPanel dashboard through the Rumahweb control panel
+
+2. **Create Python Application**
+
+   - Navigate to "Setup Python App" in the Software section
+   - Click "Create Application"
+   - Configure with these settings:
+     - Python version: 3.11 (or latest available)
+     - Application root: `/home/yourusername/hybridlms`
+     - Application URL: Select your domain
+     - Leave other fields blank (Passenger will auto-configure)
+
+3. **Upload Application Files**
+
+   - Use the File Manager in cPanel or SCP/SFTP to upload your application files
+   - Upload all files to the application root directory
+
+4. **Run Setup Script**
+
+   ```bash
+   cd /home/yourusername/hybridlms
+   chmod +x setup_rumahweb.sh
+   ./setup_rumahweb.sh
+   ```
+
+5. **Configure Environment Variables**
+
+   - Edit the `.env` file with your actual configuration values
+   - Make sure to set a strong SECRET_KEY and configure ALLOWED_HOSTS
+
+6. **Create Superuser**
+
+   ```bash
+   python manage.py createsuperuser --settings=hybrid_lms.settings_rumahweb
+   ```
+
+7. **Restart Application**
+   - In cPanel, go to "Setup Python App"
+   - Find your application and click the "Restart" button
+
+#### Auto Deployment with GitHub Actions
+
+See `AUTO_DEPLOYMENT.md` for detailed instructions on setting up automatic deployment from GitHub to Rumahweb hosting.
+
+## Monitoring and Maintenance
+
+### Health Checks
 
 The application includes built-in health check endpoints:
 
 - Basic health check: `/api/v1/health/`
-- Deep health check: `/api/v1/health/deep/`
+- Detailed health check: `/api/v1/health/detail/`
 
-These endpoints can be used for monitoring the application status.
+### Log Management
 
-## Deployment Automation
+Logs are configured to be written to:
 
-Use the provided deployment script to automate the deployment process:
+- Application logs: `/path/to/hybridLms/django.log`
+- Gunicorn logs: `/var/log/hybridlms/gunicorn-*.log`
+- Celery logs: `/var/log/celery/*.log`
 
-```bash
-./deploy.sh
-```
+### Backup Strategy
 
-This script will:
+Regular backups should include:
 
-1. Install production requirements
-2. Collect static files
-3. Apply database migrations
-4. Create cache tables
-5. Compress static files
-
-## Security Considerations
-
-1. Always use HTTPS in production
-2. Set strong SECRET_KEY
-3. Configure proper ALLOWED_HOSTS
-4. Use strong database credentials
-5. Regularly update dependencies
-6. Implement proper backup strategies
-7. Monitor logs for suspicious activity
-
-## Backup Strategy
-
-Regular backups should be implemented for:
-
-1. Database (PostgreSQL)
-2. Media files
+1. Database backups
+2. Media files (user uploads)
 3. Configuration files
+4. SSL certificates
 
-Example backup script for database:
+### Updates and Maintenance
 
-```bash
-#!/bin/bash
-pg_dump -U hybrid_lms_user -h localhost hybrid_lms_production > backup_$(date +%Y%m%d_%H%M%S).sql
-```
+To update the application:
+
+1. Pull the latest code from the repository
+2. Install/update dependencies:
+   ```bash
+   pip install -r requirements-prod.txt
+   ```
+3. Run migrations:
+   ```bash
+   python manage.py migrate --settings=hybrid_lms.settings_prod
+   ```
+4. Collect static files:
+   ```bash
+   python manage.py collectstatic --noinput --settings=hybrid_lms.settings_prod
+   ```
+5. Restart services:
+   ```bash
+   sudo systemctl restart hybridlms
+   sudo systemctl restart celery-worker
+   ```
 
 ## Troubleshooting
 
-### Check Service Status
-
-```bash
-sudo systemctl status hybridlms.service
-sudo systemctl status celery-worker.service
-```
-
-### View Logs
-
-```bash
-sudo journalctl -u hybridlms.service -f
-sudo journalctl -u celery-worker.service -f
-```
-
 ### Common Issues
 
-1. **Permission errors**: Ensure the hybridlms user has proper permissions
-2. **Database connection**: Verify database credentials and connectivity
-3. **Static files not found**: Run collectstatic command
-4. **Celery tasks not processing**: Check Redis connectivity
+1. **Application Not Starting**
 
-## Maintenance
+   - Check the Passenger error logs in cPanel
+   - Verify the `passenger_wsgi.py` file is correctly configured
+   - Ensure all required environment variables are set
 
-Regular maintenance tasks include:
+2. **Database Connection Issues**
 
-1. Updating dependencies
-2. Applying security patches
-3. Monitoring disk space
-4. Reviewing logs
-5. Testing backups
+   - Verify database credentials in the `.env` file
+   - Check if the database server is running
+   - Ensure the database user has proper permissions
+
+3. **Static Files Not Loading**
+
+   - Run `collectstatic` command
+   - Check file permissions on the static files directory
+   - Verify Nginx/Apache configuration for static files
+
+4. **Permission Errors**
+   - Ensure the web server user has read permissions on application files
+   - Check that the database user has proper permissions
+   - Verify directory permissions for media and static files
+
+### Debugging Commands
+
+```bash
+# Check application status
+sudo systemctl status hybridlms
+
+# View application logs
+tail -f /var/log/hybridlms/gunicorn-error.log
+
+# Test database connection
+python manage.py dbshell --settings=hybrid_lms.settings_prod
+
+# Run health checks
+curl http://localhost:8000/api/v1/health/
+
+# Check for pending migrations
+python manage.py showmigrations --settings=hybrid_lms.settings_prod
+```
+
+## Security Considerations
+
+1. **Secrets Management**
+
+   - Never commit sensitive information to the repository
+   - Use environment variables for all sensitive configuration
+   - Rotate secrets regularly
+
+2. **Access Control**
+
+   - Use strong, unique passwords for all accounts
+   - Implement proper user authentication and authorization
+   - Regularly review user permissions
+
+3. **Network Security**
+
+   - Use HTTPS for all communications
+   - Implement proper firewall rules
+   - Regularly update system and application software
+
+4. **Data Protection**
+   - Encrypt sensitive data at rest
+   - Implement proper backup and recovery procedures
+   - Regularly test backup restoration procedures

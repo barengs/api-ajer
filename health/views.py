@@ -7,78 +7,64 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import JsonResponse
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 from django.db import connection
-from django.utils import timezone
 from django.core.cache import cache
-from drf_spectacular.utils import extend_schema, OpenApiExample, OpenApiResponse
-from drf_spectacular.types import OpenApiTypes
+from django.utils import timezone
 import logging
-from typing import Any
 
 logger = logging.getLogger(__name__)
 
-@extend_schema(
-    tags=['Health'],
-    summary='Basic Health Check',
-    description='Returns the health status of the application',
-    responses={
-        200: OpenApiResponse(
-            response={
-                'type': 'object',
-                'properties': {
-                    'status': {'type': 'string', 'example': 'healthy'},
-                    'timestamp': {'type': 'string', 'format': 'date-time'},
-                    'database': {'type': 'string', 'example': 'connected'},
-                    'cache': {'type': 'string', 'example': 'connected'}
-                }
-            },
-            description='Application is healthy'
-        ),
-        503: OpenApiResponse(
-            response={
-                'type': 'object',
-                'properties': {
-                    'status': {'type': 'string', 'example': 'unhealthy'},
-                    'error': {'type': 'string'},
-                    'timestamp': {'type': 'string', 'format': 'date-time'}
-                }
-            },
-            description='Application is unhealthy'
-        )
-    }
-)
-@api_view(['GET'])
-@permission_classes([AllowAny])
+@require_http_methods(["GET"])
 def health_check(request):
     """
-    Basic health check endpoint
-    Returns 200 if the application is healthy, 503 otherwise
+    Simple health check endpoint for deployment verification
     """
     try:
-        # Check database connectivity
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT 1")
-            
-        # Check cache connectivity
-        cache.set('health_check', 'ok', 30)
-        cache_status = cache.get('health_check') == 'ok'
+        # Check database connection
+        db_status = "ok"
+        try:
+            connection.ensure_connection()
+        except Exception as e:
+            db_status = f"error: {str(e)}"
+            logger.error(f"Database connection error: {e}")
+
+        # Check cache (if configured)
+        cache_status = "ok"
+        try:
+            cache.set("health_check", "ok", 30)
+            if cache.get("health_check") != "ok":
+                cache_status = "error: cache not working"
+        except Exception as e:
+            cache_status = f"error: {str(e)}"
+            logger.error(f"Cache error: {e}")
+
+        # Prepare response
+        status = "ok" if db_status == "ok" and cache_status == "ok" else "degraded"
         
-        if not cache_status:
-            raise Exception("Cache health check failed")
-            
-        return Response({
-            'status': 'healthy',
-            'timestamp': timezone.now().isoformat(),
-            'database': 'connected',
-            'cache': 'connected'
-        }, status=status.HTTP_200_OK)
+        response_data = {
+            "status": status,
+            "timestamp": timezone.now().isoformat(),
+            "services": {
+                "database": db_status,
+                "cache": cache_status,
+            }
+        }
+
+        # Return appropriate status code
+        status_code = 200 if status == "ok" else 503
+        
+        return JsonResponse(response_data, status=status_code)
+        
     except Exception as e:
-        logger.error(f"Health check failed: {str(e)}")
-        return Response({
-            'status': 'unhealthy',
-            'error': str(e),
-            'timestamp': timezone.now().isoformat()
-        }, status=status.HTTP_503_SERVICE_UNAVAILABLE)
+        logger.error(f"Health check error: {e}")
+        return JsonResponse({
+            "status": "error",
+            "error": str(e),
+            "timestamp": timezone.now().isoformat()
+        }, status=500)
 
 @extend_schema(
     tags=['Health'],

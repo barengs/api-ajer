@@ -1,0 +1,158 @@
+name: Deploy to Rumahweb
+
+on:
+  push:
+    branches: [main, master, production]
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-prod.txt
+
+      - name: Run tests
+        run: |
+          python manage.py test --settings=hybrid_lms.settings
+        env:
+          DJANGO_SETTINGS_MODULE: hybrid_lms.settings
+          SECRET_KEY: test-secret-key-for-ci
+          DEBUG: True
+          DB_NAME: postgres
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+          DB_HOST: localhost
+          DB_PORT: 5432
+          CELERY_BROKER_URL: redis://localhost:6379/0
+
+  deploy:
+    name: Deploy to Rumahweb
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/production' || github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-prod.txt
+
+      - name: Create deployment package
+        run: |
+          # Create a deployment package with only necessary files
+          mkdir -p deployment
+          cp -r manage.py deployment/
+          cp -r hybrid_lms deployment/
+          cp -r accounts deployment/
+          cp -r analytics deployment/
+          cp -r assignments deployment/
+          cp -r courses deployment/
+          cp -r forums deployment/
+          cp -r gamification deployment/
+          cp -r health deployment/
+          cp -r lessons deployment/
+          cp -r live_sessions deployment/
+          cp -r navigation deployment/
+          cp -r notifications deployment/
+          cp -r oauth deployment/
+          cp -r payments deployment/
+          cp -r role_management deployment/
+          cp -r static deployment/
+          cp requirements-prod.txt deployment/
+          cp gunicorn.conf.py deployment/
+          cp deploy.sh deployment/
+
+          # Create a tarball for deployment
+          tar -czf hybridlms-deployment.tar.gz -C deployment .
+
+      - name: Deploy via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.RUMAHWEB_HOST }}
+          username: ${{ secrets.RUMAHWEB_USER }}
+          key: ${{ secrets.RUMAHWEB_SSH_KEY }}
+          source: "hybridlms-deployment.tar.gz"
+          target: "/home/${{ secrets.RUMAHWEB_USER }}/deployments/"
+          strip_components: 0
+
+      - name: Execute remote deployment commands
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.RUMAHWEB_HOST }}
+          username: ${{ secrets.RUMAHWEB_USER }}
+          key: ${{ secrets.RUMAHWEB_SSH_KEY }}
+          script: |
+            cd /home/${{ secrets.RUMAHWEB_USER }}/deployments/
+            tar -xzf hybridlms-deployment.tar.gz
+            cd hybridlms-deployment
+
+            # Activate virtual environment if it exists
+            if [ -d "/home/${{ secrets.RUMAHWEB_USER }}/venv" ]; then
+              source /home/${{ secrets.RUMAHWEB_USER }}/venv/bin/activate
+            else
+              # Create virtual environment if it doesn't exist
+              python3.11 -m venv /home/${{ secrets.RUMAHWEB_USER }}/venv
+              source /home/${{ secrets.RUMAHWEB_USER }}/venv/bin/activate
+            fi
+
+            # Install/update dependencies
+            pip install --upgrade pip
+            pip install -r requirements-prod.txt
+
+            # Run deployment script
+            chmod +x deploy.sh
+            ./deploy.sh
+
+            # Collect static files
+            python manage.py collectstatic --noinput --settings=hybrid_lms.settings_prod
+
+            # Run migrations
+            python manage.py migrate --settings=hybrid_lms.settings_prod
+
+            # Restart application (this command depends on Rumahweb's setup)
+            # You may need to adjust this based on how your application is configured on Rumahweb
+            # For example, if using Passenger:
+            # touch /home/${{ secrets.RUMAHWEB_USER }}/myapp/passenger_wsgi.py
+            # Or if using a custom restart script:
+            # /home/${{ secrets.RUMAHWEB_USER }}/restart_app.sh
+
+      - name: Cleanup
+        run: |
+          rm -f hybridlms-deployment.tar.gz
+          rm -rf deployment/
