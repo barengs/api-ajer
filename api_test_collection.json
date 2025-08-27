@@ -1,0 +1,177 @@
+{
+  "info": {
+    "name": "Hybrid LMS API",
+    "description": "API collection for testing the Hybrid Learning Management System",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "User Registration",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"student@example.com\",\n    \"username\": \"student123\",\n    \"password\": \"SecurePass123\",\n    \"password_confirm\": \"SecurePass123\",\n    \"full_name\": \"John Student\",\n    \"role\": \"student\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/register/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "User Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"student@example.com\",\n    \"password\": \"SecurePass123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/login/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get User Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/profile/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "auth", "profile"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Courses",
+      "item": [
+        {
+          "name": "List All Courses",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/courses/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "courses"]
+            }
+          }
+        },
+        {
+          "name": "Get Featured Courses",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/courses/featured/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "courses", "featured"]
+            }
+          }
+        },
+        {
+          "name": "Search Courses",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/courses/?search=python&course_type=self_paced&difficulty_level=beginner",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "courses"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "python"
+                },
+                {
+                  "key": "course_type", 
+                  "value": "self_paced"
+                },
+                {
+                  "key": "difficulty_level",
+                  "value": "beginner"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Course (Instructor)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Python for Beginners\",\n    \"description\": \"Learn Python programming from scratch\",\n    \"short_description\": \"Complete Python course for beginners\",\n    \"course_type\": \"self_paced\",\n    \"difficulty_level\": \"beginner\",\n    \"price\": \"99.99\",\n    \"is_free\": false,\n    \"learning_objectives\": [\"Understand Python basics\", \"Write simple programs\"],\n    \"prerequisites\": [\"Basic computer skills\"],\n    \"target_audience\": [\"Programming beginners\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/courses/create/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "courses", "create"]
+            }
+          }
+        },
+        {
+          "name": "Enroll in Course",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/courses/1/enroll/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "courses", "1", "enroll"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "access_token",
+      "value": ""
+    }
+  ]
+}

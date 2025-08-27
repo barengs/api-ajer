@@ -1,0 +1,1 @@
+# Live Sessions app for real-time video conferencing integration
