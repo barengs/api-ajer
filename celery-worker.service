@@ -1,0 +1,23 @@
+[Unit]
+Description=Hybrid LMS Celery Worker
+After=network.target
+
+[Service]
+Type=forking
+User=hybridlms
+Group=hybridlms
+WorkingDirectory=/path/to/hybridLms
+Environment="PATH=/path/to/hybridLms/venv/bin"
+ExecStart=/path/to/hybridLms/venv/bin/celery multi start worker1 \
+    -A hybrid_lms --pidfile=/var/run/celery/%n.pid \
+    --logfile=/var/log/celery/%n%I.log --loglevel=INFO \
+    --concurrency=4
+ExecStop=/path/to/hybridLms/venv/bin/celery multi stopwait worker1 \
+    --pidfile=/var/run/celery/%n.pid
+ExecReload=/path/to/hybridLms/venv/bin/celery multi restart worker1 \
+    -A hybrid_lms --pidfile=/var/run/celery/%n.pid \
+    --logfile=/var/log/celery/%n%I.log --loglevel=INFO
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

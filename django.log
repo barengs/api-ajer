@@ -352,3 +352,58 @@ Watching for file changes with StatReloader
 "GET / HTTP/1.1" 302 0
 "GET /api/docs/ HTTP/1.1" 200 4719
 "GET /api/schema/ HTTP/1.1" 200 985663
+/Users/ROFI/Develop/proyek/hybridLms/notifications/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/notifications/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/hybrid_lms/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/hybrid_lms/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/hybrid_lms/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/docs/ HTTP/1.1" 200 4719
+"GET /api/schema/ HTTP/1.1" 200 1020770
+/Users/ROFI/Develop/proyek/hybridLms/analytics/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/analytics/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/analytics/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/docs/ HTTP/1.1" 200 4719
+"GET /api/schema/ HTTP/1.1" 200 1021318
+/Users/ROFI/Develop/proyek/hybridLms/analytics/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/analytics/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/analytics/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/health/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/analytics/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/docs/ HTTP/1.1" 200 4719
+"GET /api/schema/ HTTP/1.1" 200 1026923
+/Users/ROFI/Develop/proyek/hybridLms/role_management/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/hybrid_lms/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/hybrid_lms/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/notifications/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/notifications/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/docs/ HTTP/1.1" 200 4719
+"GET /api/schema/ HTTP/1.1" 200 1033710
+"GET /api/docs/ HTTP/1.1" 200 4719
+"GET /api/docs/ HTTP/1.1" 200 4719
+"GET /api/schema/ HTTP/1.1" 200 1033710

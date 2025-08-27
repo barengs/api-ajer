@@ -24,7 +24,7 @@ class PlatformMetricsSerializer(serializers.ModelSerializer):
             'growth_rate', 'revenue_growth'
         ]
     
-    def get_growth_rate(self, obj):
+    def get_growth_rate(self, obj) -> float:
         """Calculate user growth rate compared to previous day"""
         try:
             previous_day = PlatformMetrics.objects.filter(
@@ -38,7 +38,7 @@ class PlatformMetricsSerializer(serializers.ModelSerializer):
         except:
             return 0.0
     
-    def get_revenue_growth(self, obj):
+    def get_revenue_growth(self, obj) -> float:
         """Calculate revenue growth compared to previous day"""
         try:
             previous_day = PlatformMetrics.objects.filter(
@@ -73,7 +73,7 @@ class InstructorMetricsSerializer(serializers.ModelSerializer):
             'student_growth'
         ]
     
-    def get_earnings_growth(self, obj):
+    def get_earnings_growth(self, obj) -> float:
         """Calculate earnings growth compared to previous day"""
         try:
             previous_day = InstructorMetrics.objects.filter(
@@ -88,7 +88,7 @@ class InstructorMetricsSerializer(serializers.ModelSerializer):
         except:
             return 0.0
     
-    def get_student_growth(self, obj):
+    def get_student_growth(self, obj) -> float:
         """Calculate student growth compared to previous day"""
         try:
             previous_day = InstructorMetrics.objects.filter(
@@ -124,7 +124,7 @@ class CourseMetricsSerializer(serializers.ModelSerializer):
             'average_rating', 'total_reviews'
         ]
     
-    def get_enrollment_growth(self, obj):
+    def get_enrollment_growth(self, obj) -> float:
         """Calculate enrollment growth compared to previous day"""
         try:
             previous_day = CourseMetrics.objects.filter(
@@ -139,7 +139,7 @@ class CourseMetricsSerializer(serializers.ModelSerializer):
         except:
             return 0.0
     
-    def get_revenue_growth(self, obj):
+    def get_revenue_growth(self, obj) -> float:
         """Calculate revenue growth compared to previous day"""
         try:
             previous_day = CourseMetrics.objects.filter(
@@ -174,14 +174,14 @@ class StudentMetricsSerializer(serializers.ModelSerializer):
             'total_points', 'badges_earned', 'achievements_unlocked', 'activity_score'
         ]
     
-    def get_learning_progress(self, obj):
+    def get_learning_progress(self, obj) -> float:
         """Calculate overall learning progress"""
         if obj.courses_enrolled > 0:
             progress = (obj.courses_completed / obj.courses_enrolled) * 100
             return round(float(progress), 2)
         return 0.0
     
-    def get_activity_score(self, obj):
+    def get_activity_score(self, obj) -> int:
         """Calculate activity score based on various metrics"""
         score = 0
         score += obj.lessons_completed * 2

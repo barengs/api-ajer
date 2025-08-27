@@ -254,6 +254,30 @@ python manage.py loaddata fixtures/sample_data.json
 
 ## Deployment
 
+### Development Server
+
+For development purposes, you can use Django's built-in development server:
+
+```bash
+python manage.py runserver
+```
+
+**Note**: The development server displays a warning about not using it in production. This is normal and expected during development.
+
+### Production Deployment
+
+For production deployment, please refer to the detailed guide in [PRODUCTION_DEPLOYMENT.md](PRODUCTION_DEPLOYMENT.md).
+
+Key components for production deployment include:
+
+1. **Web Server**: Use Gunicorn with Nginx as a reverse proxy
+2. **Database**: Migrate from SQLite to PostgreSQL
+3. **Static Files**: Use WhiteNoise or serve through Nginx
+4. **Caching**: Implement Redis for caching and Celery broker
+5. **Security**: Configure HTTPS, security headers, and proper authentication
+6. **Monitoring**: Set up health checks and logging
+7. **Scaling**: Configure load balancing for high traffic
+
 ### Production Settings
 
 1. Set `DEBUG=False` in environment

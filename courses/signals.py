@@ -5,9 +5,9 @@ from .models import Course, Enrollment, CourseReview
 
 # Optional imports for notifications and gamification
 try:
-    from notifications.models import Notification  # type: ignore
+    from notifications.services import create_notification  # type: ignore
 except ImportError:
-    Notification = None
+    create_notification = None
 
 try:
     from gamification.models import UserPoints  # type: ignore
@@ -22,8 +22,8 @@ def handle_course_enrollment(sender, instance, created, **kwargs):
     """Handle actions when a student enrolls in a course"""
     if created:
         # Create notification for instructor
-        if Notification is not None:
-            Notification.objects.create(
+        if create_notification is not None:
+            create_notification(
                 user=instance.course.instructor,
                 title="New Student Enrollment",
                 message=f"{instance.student.full_name} enrolled in your course: {instance.course.title}",
@@ -48,8 +48,8 @@ def handle_course_review(sender, instance, created, **kwargs):
     """Handle actions when a course is reviewed"""
     if created:
         # Notify instructor about new review
-        if Notification is not None:
-            Notification.objects.create(
+        if create_notification is not None:
+            create_notification(
                 user=instance.course.instructor,
                 title="New Course Review",
                 message=f"{instance.student.full_name} left a {instance.rating}-star review on {instance.course.title}",

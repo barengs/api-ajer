@@ -34,6 +34,11 @@ THIRD_PARTY_APPS = [
     'django_filters',
     'django_extensions',
     'drf_spectacular',
+    'health_check',
+    'health_check.db',
+    'health_check.cache',
+    'health_check.storage',
+    'health_check.contrib.migrations',
 ]
 
 LOCAL_APPS = [
@@ -49,6 +54,7 @@ LOCAL_APPS = [
     'live_sessions',
     'role_management',
     'navigation',
+    'health',  # Health check app
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -257,6 +263,14 @@ SPECTACULAR_SETTINGS = {
         'CourseTypeEnum': 'courses.models.Course.CourseType',
         'DifficultyLevelEnum': 'courses.models.Course.DifficultyLevel',
         'CourseStatusEnum': 'courses.models.Course.CourseStatus',
+        # Fix enum naming collisions
+        'AssignmentStatusEnum': 'assignments.models.Assignment.Status',
+        'SubmissionStatusEnum': 'assignments.models.Submission.Status',
+        'OrderStatusEnum': 'payments.models.Order.Status',
+        'PaymentStatusEnum': 'payments.models.Payment.Status',
+        'NotificationStatusEnum': 'notifications.models.Notification.Status',
+        'UserRoleAssignmentStatusEnum': 'role_management.models.UserRoleAssignment.Status',
+        'UserRoleRequestStatusEnum': 'role_management.models.UserRoleRequest.Status',
     },
     'POSTPROCESSING_HOOKS': [
         'drf_spectacular.hooks.postprocess_schema_enums',
@@ -301,6 +315,10 @@ SPECTACULAR_SETTINGS = {
         {
             'name': 'Live Sessions',
             'description': 'Integrasi dengan platform video conference untuk kelas live'
+        },
+        {
+            'name': 'Health',
+            'description': 'Endpoint untuk monitoring status aplikasi'
         }
     ],
 }
@@ -358,3 +376,8 @@ X_FRAME_OPTIONS = 'DENY'
 # Platform Configuration
 PLATFORM_COMMISSION_RATE = 0.10  # 10% commission
 DEFAULT_CURRENCY = 'USD'
+
+# Health Check Settings
+HEALTH_CHECK = {
+    'DISK_USAGE_MAX': 90,  # percent
+}

@@ -1,3 +1,7 @@
+# Production requirements for Hybrid LMS
+# This file includes additional packages needed for production deployment
+
+# Core dependencies (from requirements.txt)
 amqp==5.3.1
 asgiref==3.9.1
 attrs==25.3.0
@@ -59,4 +63,23 @@ uritemplate==4.2.0
 urllib3==2.5.0
 vine==5.1.0
 wcwidth==0.2.13
+
+# Production-specific packages
+gunicorn==23.0.0
+gevent==25.2.0
+django-redis==6.0.0
+psycopg2==2.9.10
+whitenoise==6.8.2
+newrelic==9.14.0
+sentry-sdk==2.19.0
+django-prometheus==2.3.1
 django-health-check==3.18.3
+django-cachalot==2.6.5
+
+# Security and monitoring
+django-csp==3.9
+django-axes==7.0.0
+django-ratelimit==5.2.0
+
+# Performance optimization
+django-compressor==5.1.0

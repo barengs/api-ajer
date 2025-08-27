@@ -911,6 +911,60 @@ class BulkRoleRevocationView(APIView):
                     'reason': 'Bulk revocation for security purposes'
                 }
             }
+        },
+        responses={
+            200: {
+                'type': 'object',
+                'properties': {
+                    'successful_count': {'type': 'integer', 'example': 2},
+                    'failed_count': {'type': 'integer', 'example': 1},
+                    'successful_revocations': {
+                        'type': 'array',
+                        'items': {
+                            'type': 'object',
+                            'properties': {
+                                'id': {'type': 'integer', 'example': 1},
+                                'user': {'type': 'integer', 'example': 1},
+                                'role_definition': {'type': 'integer', 'example': 5},
+                                'assigned_at': {'type': 'string', 'format': 'date-time'},
+                                'assigned_by': {'type': 'integer', 'example': 1},
+                                'is_active': {'type': 'boolean', 'example': False},
+                                'revoked_at': {'type': 'string', 'format': 'date-time'},
+                                'revoked_by': {'type': 'integer', 'example': 1},
+                                'revocation_reason': {'type': 'string', 'example': 'Bulk revocation for security purposes'}
+                            }
+                        }
+                    },
+                    'failed_revocations': {
+                        'type': 'array',
+                        'items': {
+                            'type': 'object',
+                            'properties': {
+                                'user_id': {'type': 'integer', 'example': 3},
+                                'error': {'type': 'string', 'example': 'Active role assignment not found'}
+                            }
+                        }
+                    }
+                }
+            },
+            400: {
+                'type': 'object',
+                'properties': {
+                    'error': {'type': 'string', 'example': 'user_ids and role_id are required'}
+                }
+            },
+            403: {
+                'type': 'object',
+                'properties': {
+                    'error': {'type': 'string', 'example': 'Admin access required'}
+                }
+            },
+            404: {
+                'type': 'object',
+                'properties': {
+                    'error': {'type': 'string', 'example': 'Role not found'}
+                }
+            }
         }
     )
     def post(self, request):

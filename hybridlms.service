@@ -1,0 +1,19 @@
+[Unit]
+Description=Hybrid LMS Django Application
+After=network.target
+
+[Service]
+Type=notify
+User=hybridlms
+Group=hybridlms
+WorkingDirectory=/path/to/hybridLms
+ExecStart=/path/to/hybridLms/venv/bin/gunicorn --config gunicorn.conf.py hybrid_lms.wsgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=hybridlms
+
+[Install]
+WantedBy=multi-user.target
