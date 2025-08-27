@@ -73,7 +73,35 @@ Content-Type: application/json
 }
 ```
 
-#### 2. Login
+#### 2. Login dengan Google OAuth
+
+```http
+POST /api/v1/oauth/google/
+Content-Type: application/json
+
+{
+  "access_token": "google_oauth_access_token"
+}
+```
+
+**Response:**
+
+```json
+{
+  "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
+  "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
+  "user": {
+    "id": 1,
+    "email": "user@gmail.com",
+    "full_name": "John Doe",
+    "role": "student",
+    "profile_image": "/media/profiles/image.jpg"
+  },
+  "is_new_user": false
+}
+```
+
+#### 3. Login dengan Email dan Password
 
 ```http
 POST /api/v1/auth/login/
@@ -533,7 +561,7 @@ courses = client.get_courses(search="python", category="programming")
 
 ### PHP
 
-```php
+```
 <?php
 // Install: composer require guzzlehttp/guzzle
 

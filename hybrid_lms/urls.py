@@ -22,6 +22,8 @@ urlpatterns = [
     
     # API Routes
     path('api/v1/auth/', include('accounts.urls')),
+    path('api/v1/oauth/', include('oauth.urls')),
+    path('api/v1/auth/oauth/', include('social_django.urls', namespace='social')),
     path('api/v1/courses/', include('courses.urls')),
     path('api/v1/lessons/', include('lessons.urls')),
     path('api/v1/assignments/', include('assignments.urls')),

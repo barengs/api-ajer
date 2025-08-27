@@ -1,0 +1,9 @@
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+Testing role management migration status...
+Total migrations to apply: 16
+Role management migrations to apply: 1
+  - role_management.0002_simplify_role_models
+Applied role management migrations: 1
+  - role_management.0001_initial
+Successfully checked migration status!

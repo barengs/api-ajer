@@ -25,6 +25,18 @@ from .serializers import (
     CustomTokenObtainPairSerializer
 )
 
+# Import for Google OAuth
+from django.contrib.auth import login
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+
+from social_django.utils import psa
+from social_core.exceptions import AuthCanceled, AuthForbidden
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth import login
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+
 
 @extend_schema(
     tags=['Authentication'],
@@ -716,3 +728,4 @@ def logout_view(request):
             {'error': 'Logout failed'}, 
             status=status.HTTP_400_BAD_REQUEST
         )
+

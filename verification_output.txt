@@ -1,0 +1,11 @@
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+Setting up Django environment...
+Running model tests...
+Testing role management models...
+✅ All models imported successfully!
+✅ RoleDefinition instance created: student
+✅ RolePermissionGroup instance created: basic_permissions
+🎉 All tests passed! Role management models are working correctly.
+
+✅ Verification completed successfully!

@@ -60,3 +60,4 @@ urllib3==2.5.0
 vine==5.1.0
 wcwidth==0.2.13
 django-health-check==3.18.3
+social-auth-app-django==5.4.0

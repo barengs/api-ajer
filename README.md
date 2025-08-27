@@ -66,6 +66,7 @@ hybrid_lms/
 - `POST /api/v1/auth/logout/` - User logout
 - `POST /api/v1/auth/verify-email/` - Email verification
 - `POST /api/v1/auth/password/reset/` - Password reset request
+- `POST /api/v1/oauth/google/` - Google OAuth login/registration
 
 ### Courses
 

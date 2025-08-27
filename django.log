@@ -407,3 +407,45 @@ Watching for file changes with StatReloader
 "GET /api/docs/ HTTP/1.1" 200 4719
 "GET /api/docs/ HTTP/1.1" 200 4719
 "GET /api/schema/ HTTP/1.1" 200 1033710
+/Users/ROFI/Develop/proyek/hybridLms/hybrid_lms/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/accounts/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/hybrid_lms/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/accounts/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/accounts/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/social_django/models.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/hybrid_lms/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/hybrid_lms/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/hybrid_lms/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/accounts/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/accounts/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/docs/ HTTP/1.1" 200 4719
+"GET /api/schema/ HTTP/1.1" 200 1034406
+/Users/ROFI/Develop/proyek/hybridLms/hybrid_lms/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/hybrid_lms/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/accounts/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/hybrid_lms/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/accounts/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/hybrid_lms/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/oauth/apps.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/ROFI/Develop/proyek/hybridLms/hybrid_lms/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader

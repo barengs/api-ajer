@@ -1,0 +1,15 @@
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/simple_django_test.py", line 24, in <module>
+    user_count = User.objects.count()
+                 ^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 196, in __get__
+    raise AttributeError(
+    ...<5 lines>...
+    )
+AttributeError: Manager isn't available; 'auth.User' has been swapped for 'accounts.User'
+Django imported successfully
+Django setup completed
+Django User model imported successfully
+Error: Manager isn't available; 'auth.User' has been swapped for 'accounts.User'
