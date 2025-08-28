@@ -108,6 +108,7 @@ jobs:
         with:
           host: ${{ secrets.RUMAHWEB_HOST }}
           username: ${{ secrets.RUMAHWEB_USER }}
+          password: ${{ secrets.RUMAHWEB_SS_PASS }}
           key: ${{ secrets.RUMAHWEB_SSH_KEY }}
           port: ${{ secrets.RUMAHWEB_SSH_PORT }}
           source: "hybridlms-deployment.tar.gz"
