@@ -1,7 +1,3 @@
-# Production requirements for Hybrid LMS
-# This file includes additional packages needed for production deployment
-
-# Core dependencies (from requirements.txt)
 amqp==5.3.1
 asgiref==3.9.1
 attrs==25.3.0
@@ -10,6 +6,7 @@ boto3==1.34.34
 botocore==1.34.162
 celery==5.3.4
 certifi==2025.8.3
+cffi==1.17.1
 chardet==5.2.0
 charset-normalizer==3.4.3
 click==8.2.1
@@ -17,12 +14,17 @@ click-didyoumean==0.3.1
 click-plugins==1.1.1.2
 click-repl==0.3.0
 coverage==7.4.0
+cryptography==45.0.6
+defusedxml==0.7.1
 Django==5.2.5
 django-cors-headers==4.3.1
 django-debug-toolbar==4.2.0
 django-extensions==3.2.3
 django-filter==23.5
+django-health-check==3.18.3
 django-storages==1.14.2
+django-stubs==5.2.2
+django-stubs-ext==5.2.2
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.3.0
 drf-spectacular==0.27.1
@@ -35,51 +37,41 @@ jmespath==1.0.1
 jsonschema==4.25.1
 jsonschema-specifications==2025.4.1
 kombu==5.5.4
+numpy==2.3.2
+oauthlib==3.3.1
 packaging==25.0
+pandas==2.3.2
 pillow==11.3.0
 pluggy==1.6.0
 prompt_toolkit==3.0.51
 psycopg2-binary==2.9.10
+pycparser==2.22
 Pygments==2.19.2
 PyJWT==2.10.1
 pytest==8.4.1
 pytest-django==4.8.0
 python-dateutil==2.9.0.post0
 python-decouple==3.8
+python3-openid==3.2.0
 pytz==2025.2
 PyYAML==6.0.2
 redis==5.0.1
 referencing==0.36.2
 reportlab==4.0.8
 requests==2.32.5
+requests-oauthlib==2.0.0
 rpds-py==0.27.0
 s3transfer==0.10.4
+setuptools==80.9.0
 six==1.17.0
+social-auth-app-django==5.4.0
+social-auth-core==4.7.0
 sqlparse==0.5.3
 stripe==8.0.0
+types-PyYAML==6.0.12.20250822
 typing_extensions==4.15.0
 tzdata==2025.2
 uritemplate==4.2.0
 urllib3==2.5.0
 vine==5.1.0
 wcwidth==0.2.13
-
-# Production-specific packages
-gunicorn==23.0.0
-gevent==25.2.0
-django-redis==6.0.0
-psycopg2==2.9.10
-whitenoise==6.8.2
-newrelic==9.14.0
-sentry-sdk==2.19.0
-django-prometheus==2.3.1
-django-health-check==3.18.3
-django-cachalot==2.6.5
-
-# Security and monitoring
-django-csp==3.9
-django-axes==7.0.0
-django-ratelimit==5.2.0
-
-# Performance optimization
-django-compressor==5.1.0

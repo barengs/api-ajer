@@ -37,8 +37,10 @@ jmespath==1.0.1
 jsonschema==4.25.1
 jsonschema-specifications==2025.4.1
 kombu==5.5.4
+numpy==2.3.2
 oauthlib==3.3.1
 packaging==25.0
+pandas==2.3.2
 pillow==11.3.0
 pluggy==1.6.0
 prompt_toolkit==3.0.51
