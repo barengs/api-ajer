@@ -13,17 +13,17 @@ jobs:
         image: redis
         ports:
           - 6379:6379
-      postgres:
-        image: postgres:14
-        env:
-          POSTGRES_PASSWORD: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
+      # mariadb:
+      #   image: mariadb:14
+      #   env:
+      #     MYSQL_ROOT_PASSWORD: K@mbign1
+      #   options: >-
+      #     --health-cmd pg_isready
+      #     --health-interval 10s
+      #     --health-timeout 5s
+      #     --health-retries 5
+      #   ports:
+      #     - 3360:3360
 
     steps:
       - name: Checkout code
@@ -46,11 +46,11 @@ jobs:
           DJANGO_SETTINGS_MODULE: hybrid_lms.settings
           SECRET_KEY: test-secret-key-for-ci
           DEBUG: True
-          DB_NAME: postgres
-          DB_USER: postgres
-          DB_PASSWORD: postgres
+          DB_NAME: bare3321_lms
+          DB_USER: bare3321_lms
+          DB_PASSWORD: K@mbing1
           DB_HOST: localhost
-          DB_PORT: 5432
+          DB_PORT: 3360
           CELERY_BROKER_URL: redis://localhost:6379/0
 
   deploy:

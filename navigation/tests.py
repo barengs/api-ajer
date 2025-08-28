@@ -96,8 +96,8 @@ class NavigationModelTests(TestCase):
         response = self.client.get(reverse('navigation:navigation_tree'))
         self.assertEqual(response.status_code, 200)
         
-        # Handle the response content
-        if isinstance(response, HttpResponse):
+        # Handle the response content - check if it has content attribute
+        if hasattr(response, 'content'):
             content = response.content.decode('utf-8')
             try:
                 data = json.loads(content)
@@ -126,8 +126,8 @@ class NavigationModelTests(TestCase):
             except json.JSONDecodeError:
                 self.fail("Response is not valid JSON")
         else:
-            self.fail("Response is not an HttpResponse")
-    
+            self.fail("Response does not have content attribute")
+
     def test_menu_group_creation(self):
         """Test menu group creation"""
         self.assertEqual(self.menu_group.name, 'Main Navigation')

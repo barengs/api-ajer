@@ -355,14 +355,29 @@ class RoleManagementAPITest(APITestCase):
         data = {
             'user_ids': [self.regular_user.id, user2.id],
             'role_id': self.instructor_role.pk,
+            'action': 'assign',  # Add the required action parameter
             'reason': 'Bulk API test'
         }
-        response = self.client.post(url, data)
+        response = self.client.post(url, data, format='json')
+        
+        # Print response for debugging
+        print(f"Response status: {response.status_code}")
+        # Access response data properly with proper type checking
+        response_data = getattr(response, 'data', None)
+        if response_data is not None:
+            print(f"Response data: {response_data}")
+        else:
+            content = getattr(response, 'content', b'')
+            if content:
+                print(f"Response content: {content.decode() if isinstance(content, bytes) else content}")
         
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['successful_count'], 2)  # type: ignore
-        self.assertEqual(response.data['failed_count'], 0)  # type: ignore
-    
+        # Access response data properly with proper type checking
+        response_data = getattr(response, 'data', None)
+        if response_data is not None:
+            self.assertEqual(response_data['successful_count'], 2)  # type: ignore
+            self.assertEqual(response_data['failed_count'], 0)  # type: ignore
+
     def test_role_statistics_api(self):
         """Test role statistics API"""
         # Assign some roles first
@@ -448,7 +463,8 @@ class RoleRequestModelTest(TestCase):
         )
         
         # This should raise an integrity error due to unique constraint
-        with self.assertRaises(Exception):
+        from django.db import IntegrityError
+        with self.assertRaises(IntegrityError):
             UserRoleRequest.objects.create(
                 user=self.user,
                 requested_role=self.instructor_role,

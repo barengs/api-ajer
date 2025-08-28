@@ -7,6 +7,15 @@ from typing import Dict, List, Any, Optional
 
 from .models import PlatformMetrics, InstructorMetrics, CourseMetrics, StudentMetrics
 
+# Import models that are used in the service methods for proper mocking in tests
+from django.contrib.auth import get_user_model
+from courses.models import Course, Enrollment
+from payments.models import Order, Payment
+from lessons.models import LessonProgress
+from assignments.models import AssignmentSubmission
+
+User = get_user_model()
+
 
 class AnalyticsService:
     """Service class for analytics calculations and data aggregation"""
@@ -14,11 +23,6 @@ class AnalyticsService:
     @staticmethod
     def get_platform_analytics(days: int = 30) -> Dict[str, Any]:
         """Get comprehensive platform analytics"""
-        from django.contrib.auth import get_user_model
-        from courses.models import Course, Enrollment  # type: ignore
-        from payments.models import Order, Payment  # type: ignore
-        
-        User = get_user_model()
         end_date = date.today()
         start_date = end_date - timedelta(days=days)
         
@@ -28,7 +32,7 @@ class AnalyticsService:
         total_instructors = User.objects.filter(role='instructor').count()  # type: ignore
         
         # Revenue calculations
-        completed_orders = Order.objects.filter(status='completed')  # type: ignore
+        completed_orders = Order.objects.filter(status='completed')
         total_revenue = completed_orders.aggregate(
             total=Sum('total_amount')
         )['total'] or Decimal('0.00')
@@ -44,7 +48,7 @@ class AnalyticsService:
             user_growth_rate = ((total_users - previous_users) / previous_users) * 100
         
         # Engagement metrics
-        recent_enrollments = Enrollment.objects.filter(  # type: ignore
+        recent_enrollments = Enrollment.objects.filter(
             enrolled_at__gte=start_date
         )
         active_users = recent_enrollments.values('student').distinct().count()
@@ -99,11 +103,6 @@ class AnalyticsService:
     @staticmethod
     def get_instructor_analytics(instructor_id: int, days: int = 30) -> Dict[str, Any]:
         """Get comprehensive instructor analytics"""
-        from django.contrib.auth import get_user_model
-        from courses.models import Course, Enrollment  # type: ignore
-        from payments.models import InstructorRevenue  # type: ignore
-        
-        User = get_user_model()
         end_date = date.today()
         start_date = end_date - timedelta(days=days)
         
@@ -116,15 +115,32 @@ class AnalyticsService:
         instructor_courses = Course.objects.filter(instructor=instructor)
         
         # Student metrics
-        enrollments = Enrollment.objects.filter(course__in=instructor_courses)  # type: ignore
+        enrollments = Enrollment.objects.filter(course__in=instructor_courses)
         total_students = enrollments.values('student').distinct().count()
         recent_enrollments = enrollments.filter(enrolled_at__gte=start_date)
         
-        # Earnings
-        revenues = InstructorRevenue.objects.filter(instructor=instructor)  # type: ignore
-        total_earnings = revenues.aggregate(
-            total=Sum('instructor_amount')
-        )['total'] or Decimal('0.00')
+        # Earnings - check if InstructorRevenue model exists
+        total_earnings = Decimal('0.00')
+        try:
+            # Try to import and use InstructorRevenue if it exists
+            from payments.models import InstructorRevenue  # type: ignore
+            revenues = InstructorRevenue.objects.filter(instructor=instructor)
+            total_earnings = revenues.aggregate(
+                total=Sum('instructor_amount')
+            )['total'] or Decimal('0.00')
+        except (ImportError, AttributeError):
+            # Handle case where InstructorRevenue model doesn't exist
+            # Fall back to calculating from completed orders
+            from payments.models import Order  # type: ignore
+            completed_orders = Order.objects.filter(
+                items__course__in=instructor_courses,
+                status='completed'
+            ).distinct()
+            # This is a simplified calculation - in reality, you'd need to calculate
+            # the instructor's share based on your revenue sharing model
+            total_earnings = completed_orders.aggregate(
+                total=Sum('total_amount')
+            )['total'] or Decimal('0.00')
         
         # Performance metrics
         avg_rating = instructor_courses.aggregate(
@@ -182,10 +198,6 @@ class AnalyticsService:
     @staticmethod
     def get_course_analytics(course_id: int, days: int = 30) -> Dict[str, Any]:
         """Get comprehensive course analytics"""
-        from courses.models import Course, Enrollment  # type: ignore
-        from lessons.models import LessonProgress  # type: ignore
-        from assignments.models import AssignmentSubmission  # type: ignore
-        
         end_date = date.today()
         start_date = end_date - timedelta(days=days)
         
@@ -195,11 +207,11 @@ class AnalyticsService:
             return {}
         
         # Enrollment metrics
-        enrollments = Enrollment.objects.filter(course=course)  # type: ignore
+        enrollments = Enrollment.objects.filter(course=course)
         recent_enrollments = enrollments.filter(enrolled_at__gte=start_date)
         
         # Progress metrics
-        lesson_progress = LessonProgress.objects.filter(  # type: ignore
+        lesson_progress = LessonProgress.objects.filter(
             lesson__section__course=course
         )
         avg_progress = lesson_progress.aggregate(
@@ -212,7 +224,7 @@ class AnalyticsService:
         
         # Assignment metrics
         assignments = course.assignments.all()  # type: ignore
-        assignment_submissions = AssignmentSubmission.objects.filter(  # type: ignore
+        assignment_submissions = AssignmentSubmission.objects.filter(
             assignment__in=assignments
         )
         

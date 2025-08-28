@@ -19,13 +19,13 @@ User = get_user_model()
 # Create a simple test
 class DebugTest(APITestCase):
     def setUp(self):
-        self.admin_user = User.objects.create_user(
+        self.admin_user = User.objects.create_user(  # type: ignore
             username='admin',
             email='admin@example.com',
             password='adminpass123',
             role='admin'
         )
-        self.regular_user = User.objects.create_user(
+        self.regular_user = User.objects.create_user(  # type: ignore
             username='user',
             email='user@example.com',
             password='userpass123'
@@ -37,7 +37,7 @@ class DebugTest(APITestCase):
         )
     
     def test_debug(self):
-        self.client.force_authenticate(user=self.admin_user)
+        self.client.force_authenticate(user=self.admin_user)  # type: ignore[attr-defined]
         url = reverse('role_management:user-roles', kwargs={'user_id': self.regular_user.id})
         
         data = {
@@ -46,9 +46,11 @@ class DebugTest(APITestCase):
         }
         print(f"Sending data: {data}")
         print(f"To URL: {url}")
-        response = self.client.post(url, data)
+        response = self.client.post(url, data, format='json')
         print(f"Response status: {response.status_code}")
-        print(f"Response data: {response.data}")
+        # Use getattr to safely access response data
+        response_data = getattr(response, 'data', 'No data attribute')
+        print(f"Response data: {response_data}")
 
 # Run the test
 if __name__ == '__main__':
