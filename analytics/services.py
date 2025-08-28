@@ -68,6 +68,30 @@ def serialize_platform_metrics(metrics):
     }
 
 
+def serialize_instructor_metrics(metrics):
+    """Serialize InstructorMetrics object for JSON response"""
+    if metrics is None:
+        return None
+    return {
+        'id': metrics.id,
+        'date': metrics.date.isoformat() if metrics.date else None,
+        'total_courses': metrics.total_courses,
+        'published_courses': metrics.published_courses,
+        'draft_courses': metrics.draft_courses,
+        'total_students': metrics.total_students,
+        'new_students': metrics.new_students,
+        'active_students': metrics.active_students,
+        'total_earnings': float(metrics.total_earnings),
+        'daily_earnings': float(metrics.daily_earnings),
+        'average_rating': float(metrics.average_rating),
+        'total_reviews': metrics.total_reviews,
+        'completion_rate': float(metrics.completion_rate),
+        'forum_interactions': metrics.forum_interactions,
+        'student_questions': metrics.student_questions,
+        'response_time_hours': float(metrics.response_time_hours),
+    }
+
+
 class AnalyticsService:
     """Service class for analytics calculations and data aggregation"""
     
@@ -244,7 +268,7 @@ class AnalyticsService:
             },
             'student_demographics': {},  # To be implemented
             'student_feedback': {},  # To be implemented
-            'daily_metrics': daily_metrics
+            'daily_metrics': [serialize_instructor_metrics(metric) for metric in daily_metrics]
         }
     
     @staticmethod

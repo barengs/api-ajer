@@ -1805,3 +1805,97 @@ Forbidden: /api/v1/payments/financial/admin/dashboard/
 Forbidden: /api/v1/role-management/statistics/
 Bad Request: /api/v1/analytics/course/
 Bad Request: /api/v1/analytics/instructor/update/
+Bad Request: /api/v1/analytics/course/
+Bad Request: /api/v1/analytics/course/
+Bad Request: /api/v1/analytics/course/
+Bad Request: /api/v1/analytics/course/
+Bad Request: /api/v1/analytics/instructor/
+Forbidden: /api/v1/analytics/instructor/
+Unauthorized: /api/v1/analytics/platform/
+Forbidden: /api/v1/analytics/platform/
+Forbidden: /api/v1/analytics/platform/
+Bad Request: /api/v1/analytics/instructor/update/
+Bad Request: /api/v1/analytics/course/
+Bad Request: /api/v1/analytics/instructor/
+Forbidden: /api/v1/analytics/instructor/
+Unauthorized: /api/v1/analytics/platform/
+Forbidden: /api/v1/analytics/platform/
+Forbidden: /api/v1/analytics/platform/
+Bad Request: /api/v1/analytics/instructor/update/
+Forbidden: /api/v1/gamification/admin/award-points/
+Bad Request: /api/v1/gamification/daily-login/
+Bad Request: /api/v1/navigation/items/
+Forbidden: /api/v1/navigation/groups/
+Not Found: /api/v1/navigation/items/1/
+Forbidden: /api/v1/navigation/groups/
+Forbidden: /api/v1/navigation/items/1/
+Method Not Allowed: /api/v1/oauth/google/
+Bad Request: /api/v1/oauth/google/
+Forbidden: /api/v1/payments/financial/admin/dashboard/
+Forbidden: /api/v1/payments/admin/payouts/process/
+Forbidden: /api/v1/payments/admin/reports/
+Forbidden: /api/v1/payments/financial/admin/dashboard/
+Forbidden: /api/v1/role-management/statistics/
+Bad Request: /api/v1/analytics/course/
+Bad Request: /api/v1/analytics/instructor/
+Forbidden: /api/v1/analytics/instructor/
+Unauthorized: /api/v1/analytics/platform/
+Forbidden: /api/v1/analytics/platform/
+Forbidden: /api/v1/analytics/platform/
+Bad Request: /api/v1/analytics/instructor/update/
+Forbidden: /api/v1/gamification/admin/award-points/
+Bad Request: /api/v1/gamification/daily-login/
+Bad Request: /api/v1/navigation/items/
+Forbidden: /api/v1/navigation/groups/
+Not Found: /api/v1/navigation/items/1/
+Forbidden: /api/v1/navigation/groups/
+Forbidden: /api/v1/navigation/items/1/
+Method Not Allowed: /api/v1/oauth/google/
+Bad Request: /api/v1/oauth/google/
+Forbidden: /api/v1/payments/financial/admin/dashboard/
+Forbidden: /api/v1/payments/admin/payouts/process/
+Forbidden: /api/v1/payments/admin/reports/
+Forbidden: /api/v1/payments/financial/admin/dashboard/
+Forbidden: /api/v1/role-management/statistics/
+Bad Request: /api/v1/analytics/course/
+Bad Request: /api/v1/analytics/instructor/
+Forbidden: /api/v1/analytics/instructor/
+Unauthorized: /api/v1/analytics/platform/
+Forbidden: /api/v1/analytics/platform/
+Forbidden: /api/v1/analytics/platform/
+Bad Request: /api/v1/analytics/instructor/update/
+Forbidden: /api/v1/gamification/admin/award-points/
+Bad Request: /api/v1/gamification/daily-login/
+Bad Request: /api/v1/navigation/items/
+Forbidden: /api/v1/navigation/groups/
+Not Found: /api/v1/navigation/items/1/
+Forbidden: /api/v1/navigation/groups/
+Forbidden: /api/v1/navigation/items/1/
+Method Not Allowed: /api/v1/oauth/google/
+Bad Request: /api/v1/oauth/google/
+Forbidden: /api/v1/payments/financial/admin/dashboard/
+Forbidden: /api/v1/payments/admin/payouts/process/
+Forbidden: /api/v1/payments/admin/reports/
+Forbidden: /api/v1/payments/financial/admin/dashboard/
+Forbidden: /api/v1/role-management/statistics/
+Bad Request: /api/v1/analytics/course/
+Bad Request: /api/v1/analytics/instructor/
+Forbidden: /api/v1/analytics/instructor/
+Unauthorized: /api/v1/analytics/platform/
+Forbidden: /api/v1/analytics/platform/
+Forbidden: /api/v1/analytics/platform/
+Bad Request: /api/v1/analytics/instructor/update/
+Forbidden: /api/v1/gamification/admin/award-points/
+Bad Request: /api/v1/gamification/daily-login/
+Bad Request: /api/v1/navigation/items/
+Forbidden: /api/v1/navigation/groups/
+Not Found: /api/v1/navigation/items/1/
+Forbidden: /api/v1/navigation/groups/
+Forbidden: /api/v1/navigation/items/1/
+Method Not Allowed: /api/v1/oauth/google/
+Bad Request: /api/v1/oauth/google/
+Forbidden: /api/v1/payments/financial/admin/dashboard/
+Forbidden: /api/v1/payments/admin/payouts/process/
+Forbidden: /api/v1/payments/admin/reports/
+Forbidden: /api/v1/payments/financial/admin/dashboard/
+Forbidden: /api/v1/role-management/statistics/

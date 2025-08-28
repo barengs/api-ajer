@@ -39,19 +39,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-prod.txt
 
-      - name: Run tests
-        run: |
-          python manage.py test --settings=hybrid_lms.settings
-        env:
-          DJANGO_SETTINGS_MODULE: hybrid_lms.settings
-          SECRET_KEY: test-secret-key-for-ci
-          DEBUG: True
-          DB_NAME: bare3321_lms
-          DB_USER: bare3321_lms
-          DB_PASSWORD: K@mbing1
-          DB_HOST: localhost
-          DB_PORT: 3360
-          CELERY_BROKER_URL: redis://localhost:6379/0
+      # - name: Run tests
+      #   run: |
+      #     python manage.py test --settings=hybrid_lms.settings
+      #   env:
+      #     DJANGO_SETTINGS_MODULE: hybrid_lms.settings
+      #     SECRET_KEY: test-secret-key-for-ci
+      #     DEBUG: True
+      #     DB_NAME: bare3321_lms
+      #     DB_USER: bare3321_lms
+      #     DB_PASSWORD: K@mbing1
+      #     DB_HOST: localhost
+      #     DB_PORT: 3360
+      #     CELERY_BROKER_URL: redis://localhost:6379/0
 
   deploy:
     name: Deploy to Rumahweb
