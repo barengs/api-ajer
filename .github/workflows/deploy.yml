@@ -89,11 +89,13 @@ jobs:
           cp -r lessons deployment/
           cp -r live_sessions deployment/
           cp -r navigation deployment/
+          cp -r media deployment/
           cp -r notifications deployment/
           cp -r oauth deployment/
           cp -r payments deployment/
           cp -r role_management deployment/
-          cp -r static deployment/
+          cp -r recommendations deployment/
+          cp -r staticfiles deployment/
           cp requirements-prod.txt deployment/
           cp gunicorn.conf.py deployment/
           cp deploy.sh deployment/
