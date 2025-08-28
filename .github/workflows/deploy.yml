@@ -108,7 +108,7 @@ jobs:
           username: ${{ secrets.RUMAHWEB_USER }}
           key: ${{ secrets.RUMAHWEB_SSH_KEY }}
           source: "hybridlms-deployment.tar.gz"
-          target: "/home/${{ secrets.RUMAHWEB_USER }}/deployments/"
+          target: "/home/${{ secrets.RUMAHWEB_USER }}/api.lms/"
           strip_components: 0
 
       - name: Execute remote deployment commands
@@ -118,7 +118,7 @@ jobs:
           username: ${{ secrets.RUMAHWEB_USER }}
           key: ${{ secrets.RUMAHWEB_SSH_KEY }}
           script: |
-            cd /home/${{ secrets.RUMAHWEB_USER }}/deployments/
+            cd /home/${{ secrets.RUMAHWEB_USER }}/api.lms/
             tar -xzf hybridlms-deployment.tar.gz
             cd hybridlms-deployment
 
@@ -148,7 +148,7 @@ jobs:
             # Restart application (this command depends on Rumahweb's setup)
             # You may need to adjust this based on how your application is configured on Rumahweb
             # For example, if using Passenger:
-            # touch /home/${{ secrets.RUMAHWEB_USER }}/myapp/passenger_wsgi.py
+            # touch /home/${{ secrets.RUMAHWEB_USER }}/api.lms/passenger_wsgi.py
             # Or if using a custom restart script:
             # /home/${{ secrets.RUMAHWEB_USER }}/restart_app.sh
 

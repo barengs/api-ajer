@@ -57,6 +57,7 @@ LOCAL_APPS = [
     'navigation',
     'health',  # Health check app
     'oauth',   # OAuth app
+    'recommendations',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

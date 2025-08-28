@@ -35,6 +35,7 @@ urlpatterns = [
     path('api/v1/live-sessions/', include('live_sessions.urls')),
     path('api/v1/role-management/', include('role_management.urls')),
     path('api/v1/navigation/', include('navigation.urls')),
+    path('api/v1/recommendations/', include('recommendations.urls')),
 ]
 
 # Serve media files during development

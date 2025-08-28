@@ -13,6 +13,7 @@ from django.utils.decorators import method_decorator
 from django.db import connection
 from django.core.cache import cache
 from django.utils import timezone
+from drf_spectacular.utils import extend_schema, OpenApiResponse
 import logging
 
 logger = logging.getLogger(__name__)
