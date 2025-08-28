@@ -16,7 +16,7 @@ class RecommendationModelsTest(TestCase):
     
     def setUp(self):
         # Create test user
-        self.user = User.objects.create_user(
+        self.user = User.objects.create_user(  # type: ignore
             email='test@example.com',
             username='testuser',
             password='testpass123'
@@ -28,13 +28,18 @@ class RecommendationModelsTest(TestCase):
             description='Test category description'
         )
         
-        # Create test course
+        # Create test course with unique slug
         self.course = Course.objects.create(
             title='Test Course',
+            slug='test-course',
             description='Test course description',
+            short_description='Short description',
             instructor=self.user,
             category=self.category,
-            price=99.99
+            price=99.99,
+            course_type=Course.CourseType.SELF_PACED,
+            difficulty_level=Course.DifficultyLevel.BEGINNER,
+            status=Course.CourseStatus.PUBLISHED
         )
     
     def test_user_recommendation_profile_creation(self):
@@ -93,7 +98,7 @@ class RecommendationServiceTest(TestCase):
     
     def setUp(self):
         # Create test user
-        self.user = User.objects.create_user(
+        self.user = User.objects.create_user(  # type: ignore
             email='test@example.com',
             username='testuser',
             password='testpass123'
@@ -105,21 +110,31 @@ class RecommendationServiceTest(TestCase):
             description='Test category description'
         )
         
-        # Create test courses
+        # Create test courses with unique slugs
         self.course1 = Course.objects.create(
             title='Test Course 1',
+            slug='test-course-1',
             description='Test course 1 description',
+            short_description='Short description 1',
             instructor=self.user,
             category=self.category,
-            price=99.99
+            price=99.99,
+            course_type=Course.CourseType.SELF_PACED,
+            difficulty_level=Course.DifficultyLevel.BEGINNER,
+            status=Course.CourseStatus.PUBLISHED
         )
         
         self.course2 = Course.objects.create(
             title='Test Course 2',
+            slug='test-course-2',
             description='Test course 2 description',
+            short_description='Short description 2',
             instructor=self.user,
             category=self.category,
-            price=149.99
+            price=149.99,
+            course_type=Course.CourseType.SELF_PACED,
+            difficulty_level=Course.DifficultyLevel.BEGINNER,
+            status=Course.CourseStatus.PUBLISHED
         )
         
         # Initialize recommendation service
@@ -139,9 +154,10 @@ class RecommendationServiceTest(TestCase):
             UserCourseInteraction.VIEWED
         )
         self.assertIsNotNone(interaction)
-        self.assertEqual(interaction.user, self.user)
-        self.assertEqual(interaction.course, self.course1)
-        self.assertEqual(interaction.interaction_type, UserCourseInteraction.VIEWED)
+        if interaction is not None:  # Add explicit None check to satisfy type checker
+            self.assertEqual(interaction.user, self.user)
+            self.assertEqual(interaction.course, self.course1)
+            self.assertEqual(interaction.interaction_type, UserCourseInteraction.VIEWED)
         
     def test_generate_recommendations(self):
         """Test generating recommendations"""
@@ -169,11 +185,12 @@ class RecommendationServiceTest(TestCase):
         
         # Mark as clicked
         clicked_recommendation = self.service.mark_recommendation_clicked(
-            recommendation.id, self.user
+            recommendation.pk, self.user
         )
         self.assertIsNotNone(clicked_recommendation)
-        self.assertTrue(clicked_recommendation.is_clicked)
-        self.assertIsNotNone(clicked_recommendation.clicked_at)
+        if clicked_recommendation is not None:  # Add explicit None check
+            self.assertTrue(clicked_recommendation.is_clicked)
+            self.assertIsNotNone(clicked_recommendation.clicked_at)
         
     def test_submit_feedback(self):
         """Test submitting feedback"""
@@ -188,14 +205,15 @@ class RecommendationServiceTest(TestCase):
         
         # Submit feedback
         feedback = self.service.submit_feedback(
-            recommendation.id,
+            recommendation.pk,
             self.user,
             RecommendationFeedback.HELPFUL,
             "This was very helpful"
         )
         self.assertIsNotNone(feedback)
-        self.assertEqual(feedback.feedback_type, RecommendationFeedback.HELPFUL)
-        self.assertEqual(feedback.comment, "This was very helpful")
+        if feedback is not None:  # Add explicit None check
+            self.assertEqual(feedback.feedback_type, RecommendationFeedback.HELPFUL)
+            self.assertEqual(feedback.comment, "This was very helpful")
 
 
 class RecommendationSettingsTest(TestCase):

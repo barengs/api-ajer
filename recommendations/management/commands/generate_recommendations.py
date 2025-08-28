@@ -1,11 +1,16 @@
 from django.core.management.base import BaseCommand
-from django.contrib.auth import get_user_model
 from django.utils import timezone
 from ...services import recommendation_service
 import logging
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from accounts.models import User
 
 logger = logging.getLogger(__name__)
-User = get_user_model()
+
+# Import User model directly to help with type checking
+from accounts.models import User
 
 
 class Command(BaseCommand):
@@ -31,7 +36,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         user_id = options.get('user_id')
         all_users = options.get('all')
-        force_refresh = options.get('force')
+        force_refresh = options.get('force', False) or False
         
         if not user_id and not all_users:
             self.stdout.write(

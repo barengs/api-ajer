@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import Count, Avg, Q, F, Case, When, Value, FloatField
 from django.utils import timezone
 from django.conf import settings
-from courses.models import Course, Category
+from courses.models import Course, Category, Enrollment
 from accounts.models import User
 from .models import (
     Recommendation, UserRecommendationProfile, UserCourseInteraction,
@@ -36,11 +36,13 @@ class RecommendationService:
         profile, created = UserRecommendationProfile.objects.get_or_create(user=user)
         
         # Update learning history
-        enrolled_courses = user.enrollments.filter(
+        enrolled_courses = Enrollment.objects.filter(
+            student=user,
             status='active'
         ).values_list('course_id', flat=True)
         
-        completed_courses = user.enrollments.filter(
+        completed_courses = Enrollment.objects.filter(
+            student=user,
             status='completed'
         ).values_list('course_id', flat=True)
         
@@ -74,7 +76,8 @@ class RecommendationService:
         feature_vector = {
             'total_interactions': interactions.count(),
             'completed_courses_count': profile.completed_courses.count(),
-            'enrolled_courses_count': user.enrollments.filter(
+            'enrolled_courses_count': Enrollment.objects.filter(
+                student=user,
                 status='active'
             ).count(),
             'avg_rating_given': interactions.filter(
@@ -177,7 +180,7 @@ class RecommendationService:
                     'score': (similarity_score * interaction.rating) / 5.0,  # Normalize to 0-1
                     'reason': f"Users with similar interests to you highly rated this course",
                     'reason_data': {
-                        'similar_user_id': similar_user.id,
+                        'similar_user_id': similar_user.pk,
                         'similarity_score': similarity_score,
                         'rating': interaction.rating
                     }
@@ -260,6 +263,8 @@ class RecommendationService:
         ).order_by('-popularity_score')[:10]
         
         for i, course in enumerate(popular_courses):
+            enrollment_count = getattr(course, 'enrollment_count', 0)
+            avg_rating = getattr(course, 'avg_rating', 0)
             score = 0.7 - (i * 0.05)  # Decreasing score for lower ranked courses
             recommendations.append({
                 'user': user,
@@ -267,10 +272,10 @@ class RecommendationService:
                 'course': course,
                 'algorithm_used': RecommendationAlgorithm.POPULARITY,
                 'score': max(0.1, score),  # Minimum score of 0.1
-                'reason': f"Popular course with {course.enrollment_count} enrollments and {course.avg_rating:.1f} average rating",
+                'reason': f"Popular course with {enrollment_count} enrollments and {float(avg_rating) if avg_rating else 0:.1f} average rating",
                 'reason_data': {
-                    'enrollment_count': course.enrollment_count,
-                    'avg_rating': float(course.avg_rating) if course.avg_rating else 0
+                    'enrollment_count': enrollment_count,
+                    'avg_rating': float(avg_rating) if avg_rating else 0
                 }
             })
         
@@ -330,15 +335,16 @@ class RecommendationService:
         ).order_by('-enrollment_count')[:5]
         
         for course in trending_courses:
+            enrollment_count = getattr(course, 'enrollment_count', 0)
             recommendations.append({
                 'user': user,
                 'recommendation_type': RecommendationType.COURSE,
                 'course': course,
                 'algorithm_used': RecommendationAlgorithm.KNOWLEDGE_BASED,
                 'score': 0.8,
-                'reason': f"New and trending course with {course.enrollment_count} recent enrollments",
+                'reason': f"New and trending course with {enrollment_count} recent enrollments",
                 'reason_data': {
-                    'recent_enrollments': course.enrollment_count,
+                    'recent_enrollments': enrollment_count,
                     'days_old': (timezone.now() - course.created_at).days
                 }
             })
@@ -351,14 +357,14 @@ class RecommendationService:
         """
         # Get all users who have interacted with courses
         all_users = User.objects.filter(
-            course_interactions__isnull=False
+            usercourseinteraction__isnull=False
         ).distinct()
         
         similarities = []
         
         # Calculate similarity with each user
         for other_user in all_users:
-            if other_user.id == user.id:
+            if other_user.pk == user.pk:
                 continue
                 
             similarity = self._calculate_user_similarity(user, other_user)
@@ -455,7 +461,7 @@ class RecommendationService:
             RecommendationAlgorithm.POPULARITY: 0.2,
             RecommendationAlgorithm.KNOWLEDGE_BASED: 0.25,
         }
-        return weights.get(algorithm, 0.2)
+        return weights.get(algorithm, 0.2)  # type: ignore
     
     def track_user_interaction(
         self, user: User, course: Course, interaction_type: str, **kwargs
@@ -483,10 +489,10 @@ class RecommendationService:
         """
         Get current recommendations for a user
         """
-        return Recommendation.objects.filter(
+        return list(Recommendation.objects.filter(
             user=user,
             expires_at__gt=timezone.now()
-        ).select_related('course').order_by('-score')
+        ).select_related('course').order_by('-score'))
     
     def mark_recommendation_clicked(self, recommendation_id: int, user: User):
         """
