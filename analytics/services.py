@@ -323,7 +323,7 @@ class AnalyticsService:
         
         from django.contrib.auth import get_user_model
         from courses.models import Course, Enrollment  # type: ignore
-        from payments.models import InstructorRevenue  # type: ignore
+        from payments.models import Revenue  # type: ignore
         
         User = get_user_model()
         
@@ -366,18 +366,18 @@ class AnalyticsService:
         ).values('student').distinct().count()
         
         # Earnings
-        revenues = InstructorRevenue.objects.filter(  # type: ignore
+        revenues = Revenue.objects.filter(  # type: ignore
             instructor=instructor,
             created_at__lte=target_date
         )
         
         metrics.total_earnings = revenues.aggregate(
-            total=Sum('instructor_amount')
+            total=Sum('instructor_earnings')
         )['total'] or Decimal('0.00')
         
         daily_revenues = revenues.filter(created_at__date=target_date)
         metrics.daily_earnings = daily_revenues.aggregate(
-            total=Sum('instructor_amount')
+            total=Sum('instructor_earnings')
         )['total'] or Decimal('0.00')
         
         # Performance metrics

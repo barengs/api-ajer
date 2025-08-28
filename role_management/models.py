@@ -363,6 +363,10 @@ class UserRoleRequest(models.Model):
             models.Index(fields=['requested_role', 'status']),
             models.Index(fields=['status', 'created_at']),
         ]
+        # Add unique constraint for pending requests
+        unique_together = [
+            ['user', 'requested_role', 'status'],  # Prevent duplicate requests with same status
+        ]
     
     def __str__(self):
         return f"{self.user.email} requests {self.requested_role.display_name}"

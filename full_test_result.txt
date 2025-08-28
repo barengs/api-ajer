@@ -1,0 +1,662 @@
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+Creating test database for alias 'default'...
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField User.date_joined received a naive datetime (2025-08-28 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField Course.created_at received a naive datetime (2025-08-28 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField Course.published_at received a naive datetime (2025-08-28 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField Order.completed_at received a naive datetime (2025-08-28 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField Enrollment.enrolled_at received a naive datetime (2025-08-28 00:00:00) while time zone support is active.
+  warnings.warn(
+EF./Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField User.date_joined received a naive datetime (2025-07-29 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField Enrollment.enrolled_at received a naive datetime (2025-07-29 00:00:00) while time zone support is active.
+  warnings.warn(
+EE/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField Revenue.created_at received a naive datetime (2025-08-28 00:00:00) while time zone support is active.
+  warnings.warn(
+FFE.E.E........F......F.....F........E.....F........Menu structure validation issues for group Test Navigation: ["Circular reference detected for item 'Child Item'", "Circular reference detected for item 'Grandchild Item'", "Circular reference detected for item 'Root Item'"]
+...............FFF....................F...............F...
+======================================================================
+ERROR: test_course_analytics_access_control (analytics.tests.AnalyticsAPITest.test_course_analytics_access_control)
+Test course analytics access control
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1423, in patched
+    with self.decoration_helper(patched,
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+                                args,
+                                ^^^^^
+                                keywargs) as (newargs, newkeywargs):
+                                ^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1405, in decoration_helper
+    arg = exit_stack.enter_context(patching)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 530, in enter_context
+    result = _enter(cm)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1497, in __enter__
+    original, local = self.get_original()
+                      ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1467, in get_original
+    raise AttributeError(
+        "%s does not have the attribute %r" % (target, name)
+    )
+AttributeError: <module 'analytics.views' from '/Users/ROFI/Develop/proyek/hybridLms/analytics/views.py'> does not have the attribute 'Course'
+
+======================================================================
+ERROR: test_platform_analytics_admin_required (analytics.tests.AnalyticsAPITest.test_platform_analytics_admin_required)
+Test platform analytics requires admin access
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/analytics/tests.py", line 201, in test_platform_analytics_admin_required
+    response = self.client.get(url)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/test.py", line 289, in get
+    response = super().get(path, data=data, **extra)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/test.py", line 206, in get
+    return self.generic('GET', path, **r)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/test.py", line 234, in generic
+    return super().generic(
+           ~~~~~~~~~~~~~~~^
+        method, path, data, content_type, secure, **extra)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/test/client.py", line 671, in generic
+    return self.request(**r)
+           ~~~~~~~~~~~~^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/test.py", line 286, in request
+    return super().request(**kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/test.py", line 238, in request
+    request = super().request(**kwargs)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/test/client.py", line 1087, in request
+    self.check_exception(response)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/test/client.py", line 802, in check_exception
+    raise exc_value
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/renderers.py", line 99, in render
+    ret = json.dumps(
+        data, cls=self.encoder_class,
+        indent=indent, ensure_ascii=self.ensure_ascii,
+        allow_nan=not self.strict, separators=separators
+    )
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py", line 261, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+           ~~~~~~~~~~~~~~~^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type User is not JSON serializable
+
+======================================================================
+ERROR: test_platform_metrics_list_admin_only (analytics.tests.AnalyticsAPITest.test_platform_metrics_list_admin_only)
+Test platform metrics list endpoint
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: platform_metrics.date
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/analytics/tests.py", line 256, in test_platform_metrics_list_admin_only
+    PlatformMetrics.objects.create(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        date=date.today(),
+        ^^^^^^^^^^^^^^^^^^
+        total_users=100,
+        ^^^^^^^^^^^^^^^^
+        total_courses=50
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: platform_metrics.date
+
+======================================================================
+ERROR: test_complete_analytics_workflow (analytics.tests.AnalyticsIntegrationTest.test_complete_analytics_workflow)
+Test complete analytics generation workflow
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/analytics/tests.py", line 382, in test_complete_analytics_workflow
+    instructor_analytics = AnalyticsService.get_instructor_analytics(
+        self.instructor.id, days=30
+    )
+  File "/Users/ROFI/Develop/proyek/hybridLms/analytics/services.py", line 104, in get_instructor_analytics
+    from payments.models import InstructorRevenue  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ImportError: cannot import name 'InstructorRevenue' from 'payments.models' (/Users/ROFI/Develop/proyek/hybridLms/payments/models.py)
+
+======================================================================
+ERROR: test_platform_metrics_creation (analytics.tests.AnalyticsModelsTest.test_platform_metrics_creation)
+Test platform metrics model creation
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: platform_metrics.date
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/analytics/tests.py", line 43, in test_platform_metrics_creation
+    metrics = PlatformMetrics.objects.create(
+        date=date.today(),
+    ...<2 lines>...
+        total_revenue=Decimal('1000.00')
+    )
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: platform_metrics.date
+
+======================================================================
+ERROR: test_get_platform_analytics (analytics.tests.AnalyticsServiceTest.test_get_platform_analytics)
+Test platform analytics retrieval
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1423, in patched
+    with self.decoration_helper(patched,
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+                                args,
+                                ^^^^^
+                                keywargs) as (newargs, newkeywargs):
+                                ^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1405, in decoration_helper
+    arg = exit_stack.enter_context(patching)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 530, in enter_context
+    result = _enter(cm)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1497, in __enter__
+    original, local = self.get_original()
+                      ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1467, in get_original
+    raise AttributeError(
+        "%s does not have the attribute %r" % (target, name)
+    )
+AttributeError: <module 'analytics.services' from '/Users/ROFI/Develop/proyek/hybridLms/analytics/services.py'> does not have the attribute 'Order'
+
+======================================================================
+ERROR: test_get_navigation_tree_authenticated (navigation.tests.NavigationModelTests.test_get_navigation_tree_authenticated)
+Test getting navigation tree for authenticated user
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/navigation/tests.py", line 100, in test_get_navigation_tree_authenticated
+    if isinstance(response, HttpResponse):
+                            ^^^^^^^^^^^^
+NameError: name 'HttpResponse' is not defined
+
+======================================================================
+FAIL: test_instructor_analytics_access_control (analytics.tests.AnalyticsAPITest.test_instructor_analytics_access_control)
+Test instructor analytics access control
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/analytics/tests.py", line 211, in test_instructor_analytics_access_control
+    self.assertEqual(response.status_code, status.HTTP_200_OK)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 500 != 200
+
+======================================================================
+FAIL: test_update_instructor_metrics_access_control (analytics.tests.AnalyticsAPITest.test_update_instructor_metrics_access_control)
+Test update instructor metrics access control
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/analytics/tests.py", line 336, in test_update_instructor_metrics_access_control
+    self.assertEqual(response.status_code, status.HTTP_200_OK)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 400 != 200
+
+======================================================================
+FAIL: test_update_platform_metrics_admin_only (analytics.tests.AnalyticsAPITest.test_update_platform_metrics_admin_only)
+Test update platform metrics endpoint
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/analytics/tests.py", line 317, in test_update_platform_metrics_admin_only
+    self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 200 != 400
+
+======================================================================
+FAIL: test_complete_learning_journey (gamification.tests.GamificationIntegrationTest.test_complete_learning_journey)
+Test a complete learning journey with gamification
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/gamification/tests.py", line 426, in test_complete_learning_journey
+    self.assertEqual(stats.total_points, expected_points)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 170 != 200
+
+======================================================================
+FAIL: test_check_user_badges (gamification.tests.GamificationUtilsTest.test_check_user_badges)
+Test badge checking functionality
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/gamification/tests.py", line 197, in test_check_user_badges
+    self.assertTrue(
+    ~~~~~~~~~~~~~~~^
+        UserBadge.objects.filter(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        ).exists()
+        ^^^^^^^^^^
+    )
+    ^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_create_menu_item (navigation.tests.NavigationAPITests.test_create_menu_item)
+Test creating menu item
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/navigation/tests.py", line 417, in test_create_menu_item
+    self.assertEqual(response.status_code, status.HTTP_201_CREATED)  # type: ignore
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 400 != 201
+
+======================================================================
+FAIL: test_menu_item_get_url (navigation.tests.NavigationModelTests.test_menu_item_get_url)
+Test menu item URL resolution
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/navigation/tests.py", line 150, in test_menu_item_get_url
+    self.assertEqual(self.dashboard_item.get_url(), '/dashboard/')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '#' != '/dashboard/'
+- #
++ /dashboard/
+
+
+======================================================================
+FAIL: test_admin_financial_dashboard_access (payments.tests.FinancialManagementTestCase.test_admin_financial_dashboard_access)
+Test admin can access financial dashboard
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/payments/tests.py", line 122, in test_admin_financial_dashboard_access
+    self.assertEqual(response.status_code, status.HTTP_200_OK)  # type: ignore
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 403 != 200
+
+======================================================================
+FAIL: test_admin_payout_processing (payments.tests.FinancialManagementTestCase.test_admin_payout_processing)
+Test admin can process instructor payouts
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/payments/tests.py", line 178, in test_admin_payout_processing
+    self.assertEqual(response.status_code, status.HTTP_201_CREATED)  # type: ignore
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 403 != 201
+
+======================================================================
+FAIL: test_admin_revenue_report (payments.tests.FinancialManagementTestCase.test_admin_revenue_report)
+Test admin can generate revenue report
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/payments/tests.py", line 160, in test_admin_revenue_report
+    self.assertEqual(response.status_code, status.HTTP_200_OK)  # type: ignore
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 403 != 200
+
+======================================================================
+FAIL: test_bulk_role_assignment_api (role_management.tests.RoleManagementAPITest.test_bulk_role_assignment_api)
+Test bulk role assignment API
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/role_management/tests.py", line 362, in test_bulk_role_assignment_api
+    self.assertEqual(response.status_code, status.HTTP_200_OK)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 400 != 200
+
+======================================================================
+FAIL: test_unique_pending_request_constraint (role_management.tests.RoleRequestModelTest.test_unique_pending_request_constraint)
+Test unique constraint for pending requests
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/role_management/tests.py", line 451, in test_unique_pending_request_constraint
+    with self.assertRaises(Exception):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+AssertionError: Exception not raised
+
+----------------------------------------------------------------------
+Ran 115 tests in 27.744s
+
+FAILED (failures=12, errors=7)
+Destroying test database for alias 'default'...
+Database connection successful!
+Tables in database:
+  - django_migrations
+  - sqlite_sequence
+  - django_content_type
+  - auth_group_permissions
+  - auth_permission
+  - auth_group
+  - users
+  - users_groups
+  - users_user_permissions
+  - email_verifications
+  - password_reset_tokens
+  - user_profiles
+  - user_activities
+  - django_admin_log
+  - course_tags
+  - course_categories
+  - courses
+  - course_batches
+  - course_reviews
+  - course_taggings
+  - course_wishlists
+  - enrollments
+  - platform_metrics
+  - analytics_snapshots
+  - student_metrics
+  - instructor_metrics
+  - course_metrics
+  - assignments
+  - assignment_groups
+  - assignment_group_members
+  - assignment_rubrics
+  - assignment_submissions
+  - assignment_files
+  - peer_reviews
+  - peer_review_assignments
+  - peer_review_submissions
+  - rubric_criteria
+  - rubric_levels
+  - rubric_grades
+  - health_check_db_testmodel
+  - forums
+  - forum_posts
+  - forum_replies
+  - forum_activities
+  - forum_subscriptions
+  - forum_reported_content
+  - forum_votes
+  - quizzes
+  - quiz_attempts
+  - quiz_questions
+  - quiz_answers
+  - course_sections
+  - lessons
+  - lesson_comments
+  - lesson_notes
+  - lesson_progress
+  - gamification_badgetype
+  - gamification_leaderboard
+  - gamification_userlevel
+  - gamification_achievement
+  - gamification_userstats
+  - gamification_leaderboardentry
+  - gamification_pointstransaction
+  - gamification_userachievement
+  - gamification_userbadge
+  - live_sessions
+  - session_attendances
+  - session_resources
+  - session_polls
+  - session_recordings
+  - poll_responses
+  - session_chat
+  - navigation_menu_groups
+  - navigation_menu_configuration
+  - navigation_menu_items
+  - navigation_menu_click_tracking
+  - navigation_menu_item_permissions
+  - notifications_emailtemplate
+  - notifications_notificationpreference
+  - notifications_notification
+  - shopping_carts
+  - orders
+  - cart_items
+  - order_items
+  - coupon_usages
+  - coupons_applicable_courses
+  - coupons
+  - instructor_payouts
+  - payments
+  - refunds
+  - revenues
+  - recommendation_settings
+  - user_recommendation_profiles_completed_courses
+  - user_recommendation_profiles_viewed_courses
+  - user_course_interactions
+  - recommendations
+  - recommendation_feedback
+  - user_viewed_courses
+  - user_recommendation_profiles
+  - user_role_requests
+  - role_change_history
+  - role_definitions
+  - user_role_assignments
+  - role_permission_assignments
+  - role_permission_groups
+  - django_session
+  - social_auth_association
+  - social_auth_code
+  - social_auth_nonce
+  - social_auth_usersocialauth
+  - social_auth_partial
+Social Django imported successfully
+Google OAuth view imported successfully
+Google OAuth2 backend imported successfully
+Test completed
+Django setup completed successfully!
+Migration module imported successfully!
+Status field add operation index: 57
+User-status index operation index: 76
+Role-status index operation index: 77
+✅ Status field is correctly added before the indexes that reference it!
+Applying navigation migrations...
+Operations to perform:
+  Apply all migrations: navigation
+Running pre-migrate handlers for application admin
+Running pre-migrate handlers for application auth
+Running pre-migrate handlers for application contenttypes
+Running pre-migrate handlers for application sessions
+Running pre-migrate handlers for application rest_framework_simplejwt
+Running pre-migrate handlers for application django_extensions
+Running pre-migrate handlers for application db
+Running pre-migrate handlers for application social_django
+Running pre-migrate handlers for application accounts
+Running pre-migrate handlers for application courses
+Running pre-migrate handlers for application lessons
+Running pre-migrate handlers for application assignments
+Running pre-migrate handlers for application forums
+Running pre-migrate handlers for application payments
+Running pre-migrate handlers for application notifications
+Running pre-migrate handlers for application analytics
+Running pre-migrate handlers for application gamification
+Running pre-migrate handlers for application live_sessions
+Running pre-migrate handlers for application role_management
+Running pre-migrate handlers for application navigation
+Running pre-migrate handlers for application oauth
+Running pre-migrate handlers for application recommendations
+Running migrations:
+  No migrations to apply.
+  Your models in app(s): 'role_management' have changes that are not yet reflected in a migration, and so won't be applied.
+  Run 'manage.py makemigrations' to make new migrations, and then re-run 'manage.py migrate' to apply them.
+Running post-migrate handlers for application admin
+Running post-migrate handlers for application auth
+Running post-migrate handlers for application contenttypes
+Running post-migrate handlers for application sessions
+Running post-migrate handlers for application rest_framework_simplejwt
+Running post-migrate handlers for application django_extensions
+Running post-migrate handlers for application db
+Running post-migrate handlers for application social_django
+Running post-migrate handlers for application accounts
+Running post-migrate handlers for application courses
+Running post-migrate handlers for application lessons
+Running post-migrate handlers for application assignments
+Running post-migrate handlers for application forums
+Running post-migrate handlers for application payments
+Running post-migrate handlers for application notifications
+Running post-migrate handlers for application analytics
+Running post-migrate handlers for application gamification
+Running post-migrate handlers for application live_sessions
+Running post-migrate handlers for application role_management
+Running post-migrate handlers for application navigation
+Running post-migrate handlers for application oauth
+Running post-migrate handlers for application recommendations
+Navigation migrations applied successfully!
+✅ All role management models imported successfully!
+✅ Found existing role: Student
+🎉 Role management system is working correctly!
+Found 115 test(s).
+System check identified no issues (0 silenced).

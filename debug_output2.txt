@@ -1,0 +1,24 @@
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+Creating test database for alias 'default'...
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField User.date_joined received a naive datetime (2025-08-28 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField Course.created_at received a naive datetime (2025-08-28 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField Course.published_at received a naive datetime (2025-08-28 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField Order.completed_at received a naive datetime (2025-08-28 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField Enrollment.enrolled_at received a naive datetime (2025-08-28 00:00:00) while time zone support is active.
+  warnings.warn(
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.283s
+
+OK
+Destroying test database for alias 'default'...
+Found 1 test(s).
+System check identified no issues (0 silenced).
+DEBUG: Processing request with data: {'role_id': '1', 'reason': 'API test assignment', 'user_id': 2, 'action': 'assign'}

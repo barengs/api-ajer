@@ -1,0 +1,164 @@
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Found 1 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: cache, corsheaders, django_extensions, django_filters, drf_spectacular, health, health_check, messages, migrations, rest_framework, rest_framework_simplejwt, staticfiles, storage
+  Apply all migrations: accounts, admin, analytics, assignments, auth, contenttypes, courses, db, forums, gamification, lessons, live_sessions, navigation, notifications, payments, recommendations, role_management, sessions, social_django
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying accounts.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying courses.0001_initial... OK
+  Applying analytics.0001_initial... OK
+  Applying analytics.0002_rename_analytics_s_snapsho_9393e2_idx_analytics_s_snapsho_986962_idx_and_more... OK
+  Applying assignments.0001_initial... OK
+  Applying db.0001_initial... OK
+  Applying forums.0001_initial... OK
+  Applying lessons.0001_initial... OK
+  Applying gamification.0001_initial... OK
+  Applying live_sessions.0001_initial... OK
+  Applying live_sessions.0002_pollresponse_sessionchat_and_more... OK
+  Applying role_management.0001_initial... OK
+  Applying navigation.0001_initial... OK
+  Applying navigation.0002_rename_navigation_menu_item_clicked_at_idx_navigation__menu_it_063313_idx_and_more... OK
+  Applying notifications.0001_initial... OK
+  Applying payments.0001_initial... OK
+  Applying payments.0002_revenue_remove_instructorrevenue_instructor_and_more... OK
+  Applying recommendations.0001_initial... OK
+  Applying recommendations.0002_add_user_viewed_course... OK
+  Applying recommendations.0003_rename_recommendat_user_id_4d5e6f_idx_recommendat_user_id_e533fa_idx_and_more... OK
+  Applying role_management.0002_rolepermissionassignment_and_more... OK
+  Applying sessions.0001_initial... OK
+  Applying social_django.0001_initial... OK
+  Applying social_django.0002_add_related_name... OK
+  Applying social_django.0003_alter_email_max_length... OK
+  Applying social_django.0004_auto_20160423_0400... OK
+  Applying social_django.0005_auto_20160727_2333... OK
+  Applying social_django.0006_partial... OK
+  Applying social_django.0007_code_timestamp... OK
+  Applying social_django.0008_partial_timestamp... OK
+  Applying social_django.0009_auto_20191118_0520... OK
+  Applying social_django.0010_uid_db_index... OK
+  Applying social_django.0011_alter_id_fields... OK
+  Applying social_django.0012_usersocialauth_extra_data_new... OK
+  Applying social_django.0013_migrate_extra_data... OK
+  Applying social_django.0014_remove_usersocialauth_extra_data... OK
+  Applying social_django.0015_rename_extra_data_new_usersocialauth_extra_data...Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+ OK
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/manage.py", line 22, in <module>
+    main()
+    ~~~~^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/management/commands/test.py", line 24, in run_from_argv
+    super().run_from_argv(argv)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/management/base.py", line 416, in run_from_argv
+    self.execute(*args, **cmd_options)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/management/base.py", line 460, in execute
+    output = self.handle(*args, **options)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/management/commands/test.py", line 63, in handle
+    failures = test_runner.run_tests(test_labels)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/test/runner.py", line 1098, in run_tests
+    self.run_checks(databases)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/test/runner.py", line 1020, in run_checks
+    call_command("check", verbosity=self.verbosity, databases=databases)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/management/__init__.py", line 194, in call_command
+    return command.execute(*args, **defaults)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/management/base.py", line 460, in execute
+    output = self.handle(*args, **options)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/management/commands/check.py", line 81, in handle
+    self.check(
+    ~~~~~~~~~~^
+        app_configs=app_configs,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        databases=options["databases"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/management/base.py", line 492, in check
+    all_issues = checks.run_checks(
+        app_configs=app_configs,
+    ...<2 lines>...
+        databases=databases,
+    )
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/checks/registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/checks/urls.py", line 44, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/checks/urls.py", line 63, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 718, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/Users/ROFI/Develop/proyek/hybridLms/hybrid_lms/urls.py", line 36, in <module>
+    path('api/v1/role-management/', include('role_management.urls')),
+                                    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/urls/conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/Users/ROFI/Develop/proyek/hybridLms/role_management/urls.py", line 3, in <module>
+    from . import views
+  File "/Users/ROFI/Develop/proyek/hybridLms/role_management/views.py", line 396
+    return Response(
+                   ^
+SyntaxError: '(' was never closed

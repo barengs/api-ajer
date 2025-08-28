@@ -57,7 +57,7 @@ class NavigationModelTests(TestCase):
             description='User dashboard',
             icon='fas fa-tachometer-alt',
             target_type=MenuItem.TargetType.INTERNAL,
-            url_name='dashboard',
+            url_name='accounts:user_dashboard',
             min_role_level=10,
             sort_order=0,
             created_by=self.superuser
@@ -87,6 +87,46 @@ class NavigationModelTests(TestCase):
             opens_in_new_window=True,
             created_by=self.superuser
         )
+    
+    def test_get_navigation_tree_authenticated(self):
+        """Test getting navigation tree for authenticated user"""
+        # Use Django's login method for TestCase
+        self.client.login(email='student@example.com', password='testpass123')
+        
+        response = self.client.get(reverse('navigation:navigation_tree'))
+        self.assertEqual(response.status_code, 200)
+        
+        # Handle the response content
+        if isinstance(response, HttpResponse):
+            content = response.content.decode('utf-8')
+            try:
+                data = json.loads(content)
+                self.assertIn('menu_groups', data)
+                
+                # Student should see menu groups with accessible items only
+                menu_groups = data['menu_groups']
+                self.assertGreater(len(menu_groups), 0)
+                
+                # Find our test group
+                test_group = None
+                for group in menu_groups:
+                    if group['name'] == 'Main Navigation':
+                        test_group = group
+                        break
+                
+                self.assertIsNotNone(test_group)
+                if test_group is not None:  # Add type check
+                    # Should have dashboard item but not admin item
+                    items = test_group['items']
+                    dashboard_items = [item for item in items if item['title'] == 'Dashboard']
+                    admin_items = [item for item in items if item['title'] == 'Admin Panel']
+                    
+                    self.assertEqual(len(dashboard_items), 1)
+                    self.assertEqual(len(admin_items), 0)
+            except json.JSONDecodeError:
+                self.fail("Response is not valid JSON")
+        else:
+            self.fail("Response is not an HttpResponse")
     
     def test_menu_group_creation(self):
         """Test menu group creation"""
@@ -218,38 +258,6 @@ class NavigationModelTests(TestCase):
             value='My Learning Platform'
         )
         self.assertEqual(string_config.get_value(), 'My Learning Platform')
-
-    def test_get_navigation_tree_authenticated(self):
-        """Test getting navigation tree for authenticated user"""
-        self.client.force_authenticate(user=self.student)  # type: ignore
-        
-        response = self.client.get(reverse('navigation:navigation_tree'))  # type: ignore
-        self.assertEqual(response.status_code, status.HTTP_200_OK)  # type: ignore
-        # Handle type checking issue by checking for data attribute
-        if hasattr(response, 'data'):
-            self.assertIn('menu_groups', response.data)  # type: ignore
-            
-            # Student should see menu groups with accessible items only
-            menu_groups = response.data['menu_groups']  # type: ignore
-            self.assertGreater(len(menu_groups), 0)
-            
-            # Find our test group
-            test_group = None
-            for group in menu_groups:
-                if group['name'] == 'Main Navigation':
-                    test_group = group
-                    break
-            
-            self.assertIsNotNone(test_group)
-            # Should have dashboard item but not admin item
-            items = test_group['items']  # type: ignore
-            dashboard_items = [item for item in items if item['title'] == 'Dashboard']
-            admin_items = [item for item in items if item['title'] == 'Admin Panel']
-            
-            self.assertEqual(len(dashboard_items), 1)
-            self.assertEqual(len(admin_items), 0)
-        else:
-            self.fail("Response does not have data attribute")
 
 class NavigationAPITests(APITestCase):
     """Test cases for navigation API endpoints"""

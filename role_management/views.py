@@ -233,20 +233,38 @@ class UserRoleManagementView(APIView):
             404: {'description': 'User or role not found'}
         }
     )
-    def post(self, request):
+    def post(self, request, user_id=None):
         """Perform role management action"""
-        serializer = UserRoleManagementSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        # If we have user_id from URL, add it to the data
+        data = {}
+        # Copy data from request, handling list values
+        for key, value in request.data.items():
+            if isinstance(value, list) and len(value) == 1:
+                data[key] = value[0]
+            else:
+                data[key] = value
+        if user_id:
+            data['user_id'] = user_id
+            # If action is not provided, default to 'assign' when user_id is in URL
+            if 'action' not in data:
+                data['action'] = 'assign'
+        
+        serializer = UserRoleManagementSerializer(data=data)
+        if not serializer.is_valid():
+            return Response(
+                {'error': 'Invalid request data', 'details': serializer.errors},
+                status=status.HTTP_400_BAD_REQUEST
+            )
         
         # Type casting for proper type checking
-        data: Dict[str, Any] = cast(Dict[str, Any], serializer.validated_data)
-        if not data:
+        validated_data: Dict[str, Any] = cast(Dict[str, Any], serializer.validated_data)
+        if not validated_data:
             return Response(
                 {'error': 'Invalid request data'},
                 status=status.HTTP_400_BAD_REQUEST
             )
         
-        action = data.get('action')
+        action = validated_data.get('action')
         if not action:
             return Response(
                 {'error': 'Action is required'},
@@ -257,30 +275,30 @@ class UserRoleManagementView(APIView):
             assignment = None
             
             if action == 'assign':
-                user_id = data.get('user_id')
-                role_id = data.get('role_id')
+                target_user_id = validated_data.get('user_id')
+                role_id = validated_data.get('role_id')
                 
-                if not user_id or not role_id:
+                if not target_user_id or not role_id:
                     return Response(
                         {'error': 'user_id and role_id are required'},
                         status=status.HTTP_400_BAD_REQUEST
                     )
                 
                 assignment = RoleManagementService.assign_role(
-                    user_id=int(user_id),
+                    user_id=int(target_user_id),
                     role_id=int(role_id),
                     assigned_by=request.user,
-                    reason=data.get('reason', ''),
-                    effective_from=data.get('effective_from'),
-                    effective_until=data.get('effective_until'),
-                    notes=data.get('notes', '')
+                    reason=validated_data.get('reason', ''),
+                    effective_from=validated_data.get('effective_from'),
+                    effective_until=validated_data.get('effective_until'),
+                    notes=validated_data.get('notes', '')
                 )
                 
             elif action == 'revoke':
-                user_id = data.get('user_id')
-                role_id = data.get('role_id')
+                target_user_id = validated_data.get('user_id')
+                role_id = validated_data.get('role_id')
                 
-                if not user_id or not role_id:
+                if not target_user_id or not role_id:
                     return Response(
                         {'error': 'user_id and role_id are required'},
                         status=status.HTTP_400_BAD_REQUEST
@@ -288,7 +306,7 @@ class UserRoleManagementView(APIView):
                 
                 # Find the assignment to revoke
                 assignment = UserRoleAssignment.objects.filter(
-                    user_id=int(user_id),
+                    user_id=int(target_user_id),
                     role_id=int(role_id),
                     status=UserRoleAssignment.AssignmentStatus.ACTIVE
                 ).first()
@@ -302,21 +320,21 @@ class UserRoleManagementView(APIView):
                 assignment = RoleManagementService.revoke_role(
                     assignment_id=assignment.pk,
                     revoked_by=request.user,
-                    reason=data.get('reason', '')
+                    reason=validated_data.get('reason', '')
                 )
                 
             elif action == 'suspend':
-                user_id = data.get('user_id')
-                role_id = data.get('role_id')
+                target_user_id = validated_data.get('user_id')
+                role_id = validated_data.get('role_id')
                 
-                if not user_id or not role_id:
+                if not target_user_id or not role_id:
                     return Response(
                         {'error': 'user_id and role_id are required'},
                         status=status.HTTP_400_BAD_REQUEST
                     )
                 
                 assignment = UserRoleAssignment.objects.filter(
-                    user_id=int(user_id),
+                    user_id=int(target_user_id),
                     role_id=int(role_id),
                     status=UserRoleAssignment.AssignmentStatus.ACTIVE
                 ).first()
@@ -330,21 +348,21 @@ class UserRoleManagementView(APIView):
                 assignment = RoleManagementService.suspend_role(
                     assignment_id=assignment.pk,
                     suspended_by=request.user,
-                    reason=data.get('reason', '')
+                    reason=validated_data.get('reason', '')
                 )
                 
             elif action == 'reactivate':
-                user_id = data.get('user_id')
-                role_id = data.get('role_id')
+                target_user_id = validated_data.get('user_id')
+                role_id = validated_data.get('role_id')
                 
-                if not user_id or not role_id:
+                if not target_user_id or not role_id:
                     return Response(
                         {'error': 'user_id and role_id are required'},
                         status=status.HTTP_400_BAD_REQUEST
                     )
                 
                 assignment = UserRoleAssignment.objects.filter(
-                    user_id=int(user_id),
+                    user_id=int(target_user_id),
                     role_id=int(role_id),
                     status=UserRoleAssignment.AssignmentStatus.SUSPENDED
                 ).first()
@@ -358,7 +376,7 @@ class UserRoleManagementView(APIView):
                 assignment = RoleManagementService.reactivate_role(
                     assignment_id=assignment.pk,
                     reactivated_by=request.user,
-                    reason=data.get('reason', '')
+                    reason=validated_data.get('reason', '')
                 )
             else:
                 return Response(
@@ -373,7 +391,7 @@ class UserRoleManagementView(APIView):
                 )
             
             serializer = UserRoleAssignmentSerializer(assignment)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
             
         except ValidationError as e:
             return Response(
@@ -415,7 +433,16 @@ class BulkRoleAssignmentView(APIView):
     )
     def post(self, request):
         """Perform bulk role assignments"""
-        serializer = BulkRoleAssignmentSerializer(data=request.data)
+        # Handle list values in request data
+        data = {}
+        # Copy data from request, handling list values
+        for key, value in request.data.items():
+            if isinstance(value, list) and len(value) == 1:
+                data[key] = value[0]
+            else:
+                data[key] = value
+        
+        serializer = BulkRoleAssignmentSerializer(data=data)
         serializer.is_valid(raise_exception=True)
         
         # Type casting for proper type checking
@@ -1061,14 +1088,16 @@ class RoleStatisticsView(APIView):
         # Get statistics
         total_users = User.objects.count()
         total_roles = RoleDefinition.objects.filter(is_active=True).count()
-        active_assignments = UserRoleAssignment.objects.filter(is_active=True).count()
+        active_assignments = UserRoleAssignment.objects.filter(
+            status=UserRoleAssignment.AssignmentStatus.ACTIVE
+        ).count()
         
         # Role distribution
         role_distribution = []
         for role in RoleDefinition.objects.filter(is_active=True):
             count = UserRoleAssignment.objects.filter(
-                role_definition=role,
-                is_active=True
+                role=role,
+                status=UserRoleAssignment.AssignmentStatus.ACTIVE
             ).count()
             role_distribution.append({
                 'role_name': role.name,
