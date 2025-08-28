@@ -17,6 +17,57 @@ from assignments.models import AssignmentSubmission
 User = get_user_model()
 
 
+def serialize_user(user):
+    """Serialize User object for JSON response"""
+    if user is None:
+        return None
+    return {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'first_name': getattr(user, 'first_name', ''),
+        'last_name': getattr(user, 'last_name', ''),
+        'role': getattr(user, 'role', ''),
+    }
+
+
+def serialize_course(course):
+    """Serialize Course object for JSON response"""
+    if course is None:
+        return None
+    return {
+        'id': course.id,
+        'title': course.title,
+        'slug': course.slug,
+        'instructor_id': course.instructor_id if hasattr(course, 'instructor_id') else None,
+        'enrollment_count': getattr(course, 'enrollment_count', 0) if hasattr(course, 'enrollment_count') else 0,
+        'avg_rating': float(getattr(course, 'avg_rating', 0)) if hasattr(course, 'avg_rating') else 0,
+    }
+
+
+def serialize_platform_metrics(metrics):
+    """Serialize PlatformMetrics object for JSON response"""
+    if metrics is None:
+        return None
+    return {
+        'id': metrics.id,
+        'date': metrics.date.isoformat() if metrics.date else None,
+        'total_users': metrics.total_users,
+        'new_users': metrics.new_users,
+        'total_courses': metrics.total_courses,
+        'new_courses': metrics.new_courses,
+        'published_courses': metrics.published_courses,
+        'total_revenue': float(metrics.total_revenue),
+        'daily_revenue': float(metrics.daily_revenue),
+        'total_enrollments': metrics.total_enrollments,
+        'new_enrollments': metrics.new_enrollments,
+        'completed_courses': metrics.completed_courses,
+        'forum_posts': metrics.forum_posts,
+        'lesson_completions': metrics.lesson_completions,
+        'assignment_submissions': metrics.assignment_submissions,
+    }
+
+
 class AnalyticsService:
     """Service class for analytics calculations and data aggregation"""
     
@@ -82,20 +133,20 @@ class AnalyticsService:
             'total_users': total_users,
             'total_courses': total_courses,
             'total_instructors': total_instructors,
-            'total_revenue': total_revenue,
+            'total_revenue': float(total_revenue),
             'user_growth_rate': round(user_growth_rate, 2),
             'course_growth_rate': 0.0,  # To be calculated
             'revenue_growth_rate': 0.0,  # To be calculated
             'active_users_percentage': round(active_users_percentage, 2),
             'course_completion_rate': round(completion_rate, 2),
             'average_session_duration': 0.0,  # To be implemented with session tracking
-            'popular_courses': popular_courses,
-            'top_instructors': top_instructors,
-            'daily_metrics': daily_metrics,
+            'popular_courses': [serialize_course(course) for course in popular_courses],
+            'top_instructors': [serialize_user(instructor) for instructor in top_instructors],
+            'daily_metrics': [serialize_platform_metrics(metric) for metric in daily_metrics],
             'revenue_breakdown': {
-                'course_sales': total_revenue,
-                'refunds': Decimal('0.00'),  # To be calculated
-                'net_revenue': total_revenue
+                'course_sales': float(total_revenue),
+                'refunds': 0.0,  # To be calculated
+                'net_revenue': float(total_revenue)
             },
             'refund_rate': 0.0
         }
@@ -174,16 +225,17 @@ class AnalyticsService:
         ).order_by('date')
         
         return {
+            'instructor': serialize_user(instructor),
             'total_students': total_students,
             'total_courses': instructor_courses.count(),
-            'total_earnings': total_earnings,
-            'average_rating': avg_rating,
+            'total_earnings': float(total_earnings),
+            'average_rating': float(avg_rating),
             'student_growth_rate': round(student_growth_rate, 2),
             'earnings_growth_rate': 0.0,  # To be calculated
             'completion_rate': round(completion_rate, 2),
             'engagement_score': 0.0,  # To be calculated
             'response_time': 0.0,  # To be implemented
-            'best_performing_courses': best_courses,
+            'best_performing_courses': [serialize_course(course) for course in best_courses],
             'recent_enrollments': {
                 'this_week': recent_enrollments.filter(
                     enrolled_at__gte=end_date - timedelta(days=7)
@@ -229,10 +281,11 @@ class AnalyticsService:
         )
         
         return {
+            'course': serialize_course(course),
             'total_enrollments': enrollments.count(),
             'new_enrollments': recent_enrollments.count(),
             'completion_rate': round(completion_rate, 2),
-            'average_progress': avg_progress,
+            'average_progress': float(avg_progress),
             'assignment_submissions': assignment_submissions.count(),
             'active_students': recent_enrollments.values('student').distinct().count()
         }

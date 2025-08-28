@@ -1,0 +1,151 @@
+{
+  "timestamp": "2025-08-28T14:22:01.556791",
+  "total_modules": 14,
+  "successful_modules": 4,
+  "failed_modules": 10,
+  "total_tests_run": 120,
+  "total_failures": 0,
+  "total_errors": 0,
+  "module_results": [
+    {
+      "module": "accounts",
+      "success": true,
+      "return_code": 0,
+      "tests_run": 0,
+      "failures": 0,
+      "errors": 0,
+      "stdout": "Found 0 test(s).\nSystem check identified no issues (0 silenced).\n",
+      "stderr": "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import DistributionNotFound, get_distribution\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.\n  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)\n\n----------------------------------------------------------------------\nRan 0 tests in 0.000s\n\nNO TESTS RAN\n"
+    },
+    {
+      "module": "analytics",
+      "success": false,
+      "return_code": 1,
+      "tests_run": 14,
+      "failures": 0,
+      "errors": 0,
+      "stdout": "Found 14 test(s).\nSystem check identified no issues (0 silenced).\n",
+      "stderr": "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import DistributionNotFound, get_distribution\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.\n  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)\nUsing existing test database for alias 'default'...\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField User.date_joined recei"
+    },
+    {
+      "module": "assignments",
+      "success": false,
+      "return_code": 1,
+      "tests_run": 1,
+      "failures": 0,
+      "errors": 0,
+      "stdout": "Found 1 test(s).\nSystem check identified no issues (0 silenced).\n",
+      "stderr": "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import DistributionNotFound, get_distribution\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.\n  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)\nE\n======================================================================\nERROR: tests (unittest.loader._FailedTest.tests)\n----------------------------------------------------------------------\nImportError: Failed to i"
+    },
+    {
+      "module": "courses",
+      "success": false,
+      "return_code": 1,
+      "tests_run": 1,
+      "failures": 0,
+      "errors": 0,
+      "stdout": "Found 1 test(s).\nSystem check identified no issues (0 silenced).\n",
+      "stderr": "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import DistributionNotFound, get_distribution\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.\n  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)\nE\n======================================================================\nERROR: tests (unittest.loader._FailedTest.tests)\n----------------------------------------------------------------------\nImportError: Failed to i"
+    },
+    {
+      "module": "forums",
+      "success": false,
+      "return_code": 1,
+      "tests_run": 1,
+      "failures": 0,
+      "errors": 0,
+      "stdout": "Found 1 test(s).\nSystem check identified no issues (0 silenced).\n",
+      "stderr": "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import DistributionNotFound, get_distribution\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.\n  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)\nE\n======================================================================\nERROR: tests (unittest.loader._FailedTest.tests)\n----------------------------------------------------------------------\nImportError: Failed to i"
+    },
+    {
+      "module": "gamification",
+      "success": false,
+      "return_code": 1,
+      "tests_run": 16,
+      "failures": 0,
+      "errors": 0,
+      "stdout": "Found 16 test(s).\nSystem check identified no issues (0 silenced).\n",
+      "stderr": "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import DistributionNotFound, get_distribution\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.\n  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)\nUsing existing test database for alias 'default'...\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField User.date_joined recei"
+    },
+    {
+      "module": "lessons",
+      "success": false,
+      "return_code": 1,
+      "tests_run": 1,
+      "failures": 0,
+      "errors": 0,
+      "stdout": "Found 1 test(s).\nSystem check identified no issues (0 silenced).\n",
+      "stderr": "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import DistributionNotFound, get_distribution\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.\n  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)\nE\n======================================================================\nERROR: tests (unittest.loader._FailedTest.tests)\n----------------------------------------------------------------------\nImportError: Failed to i"
+    },
+    {
+      "module": "live_sessions",
+      "success": false,
+      "return_code": 1,
+      "tests_run": 1,
+      "failures": 0,
+      "errors": 0,
+      "stdout": "Found 1 test(s).\nSystem check identified no issues (0 silenced).\n",
+      "stderr": "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import DistributionNotFound, get_distribution\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.\n  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)\nE\n======================================================================\nERROR: tests (unittest.loader._FailedTest.tests)\n----------------------------------------------------------------------\nImportError: Failed to i"
+    },
+    {
+      "module": "navigation",
+      "success": false,
+      "return_code": 1,
+      "tests_run": 29,
+      "failures": 0,
+      "errors": 0,
+      "stdout": "Found 29 test(s).\nSystem check identified no issues (0 silenced).\n",
+      "stderr": "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import DistributionNotFound, get_distribution\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.\n  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)\nUsing existing test database for alias 'default'...\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField User.date_joined recei"
+    },
+    {
+      "module": "notifications",
+      "success": true,
+      "return_code": 0,
+      "tests_run": 10,
+      "failures": 0,
+      "errors": 0,
+      "stdout": "Found 10 test(s).\nSystem check identified no issues (0 silenced).\n",
+      "stderr": "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import DistributionNotFound, get_distribution\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.\n  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)\nUsing existing test database for alias 'default'...\n./Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField User.date_joined rece"
+    },
+    {
+      "module": "payments",
+      "success": false,
+      "return_code": 1,
+      "tests_run": 7,
+      "failures": 0,
+      "errors": 0,
+      "stdout": "Found 7 test(s).\nSystem check identified no issues (0 silenced).\n",
+      "stderr": "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import DistributionNotFound, get_distribution\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.\n  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)\nUsing existing test database for alias 'default'...\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField User.date_joined recei"
+    },
+    {
+      "module": "role_management",
+      "success": false,
+      "return_code": 1,
+      "tests_run": 26,
+      "failures": 0,
+      "errors": 0,
+      "stdout": "Found 26 test(s).\nSystem check identified no issues (0 silenced).\nResponse status: 200\nResponse data: {'successful_count': 2, 'failed_count': 0, 'successful_assignments': [OrderedDict({'id': 1, 'user': 2, 'role': 1, 'user_details': OrderedDict({'id': 2, 'username': 'user', 'email': 'user@example.com', 'first_name': '', 'last_name': '', 'full_name': '', 'is_active': True, 'date_joined': '2025-08-28T07:21:31.398455Z'}), 'role_details': OrderedDict({'id': 1, 'name': 'instructor', 'display_name': 'Instructor', 'description': '', 'can_manage_users': False, 'can_manage_courses': False, 'can_manage_content': False, 'can_view_analytics': False, 'can_manage_payments': False, 'can_manage_system': False, 'can_moderate_forums': False, 'can_support_users': False, 'hierarchy_level': 50, 'max_users_manageable': None, 'is_active': True, 'is_assignable': True, 'active_assignments_count': 2, 'total_assignments_count': 2, 'created_at': '2025-08-28T07:21:31.520519Z', 'updated_at': '2025-08-28T07:21:31.520",
+      "stderr": "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import DistributionNotFound, get_distribution\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.\n  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)\nUsing existing test database for alias 'default'...\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField User.date_joined recei"
+    },
+    {
+      "module": "oauth",
+      "success": true,
+      "return_code": 0,
+      "tests_run": 3,
+      "failures": 0,
+      "errors": 0,
+      "stdout": "Found 3 test(s).\nSystem check identified no issues (0 silenced).\n",
+      "stderr": "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import DistributionNotFound, get_distribution\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.\n  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)\nUsing existing test database for alias 'default'...\n...\n----------------------------------------------------------------------\nRan 3 tests in 0.030s\n\nOK\nPreserving test database for alias 'default'...\n"
+    },
+    {
+      "module": "recommendations",
+      "success": true,
+      "return_code": 0,
+      "tests_run": 10,
+      "failures": 0,
+      "errors": 0,
+      "stdout": "Found 10 test(s).\nSystem check identified no issues (0 silenced).\n",
+      "stderr": "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import DistributionNotFound, get_distribution\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.\n  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)\nUsing existing test database for alias 'default'...\n/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField User.date_joined recei"
+    }
+  ]
+}

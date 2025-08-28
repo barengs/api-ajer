@@ -1,0 +1,175 @@
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework_simplejwt/__init__.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+Using existing test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Found 1 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: cache, corsheaders, django_extensions, django_filters, drf_spectacular, health, health_check, messages, migrations, rest_framework, rest_framework_simplejwt, staticfiles, storage
+  Apply all migrations: accounts, admin, analytics, assignments, auth, contenttypes, courses, db, forums, gamification, lessons, live_sessions, navigation, notifications, payments, recommendations, role_management, sessions, social_django
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying accounts.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying courses.0001_initial... OK
+  Applying analytics.0001_initial... OK
+  Applying analytics.0002_rename_analytics_s_snapsho_9393e2_idx_analytics_s_snapsho_986962_idx_and_more... OK
+  Applying assignments.0001_initial... OK
+  Applying db.0001_initial... OK
+  Applying forums.0001_initial... OK
+  Applying lessons.0001_initial... OK
+  Applying gamification.0001_initial... OK
+  Applying live_sessions.0001_initial... OK
+  Applying live_sessions.0002_pollresponse_sessionchat_and_more... OK
+  Applying role_management.0001_initial... OK
+  Applying navigation.0001_initial... OK
+  Applying navigation.0002_rename_navigation_menu_item_clicked_at_idx_navigation__menu_it_063313_idx_and_more... OK
+  Applying notifications.0001_initial... OK
+  Applying payments.0001_initial... OK
+  Applying payments.0002_revenue_remove_instructorrevenue_instructor_and_more... OK
+  Applying recommendations.0001_initial... OK
+  Applying recommendations.0002_add_user_viewed_course... OK
+  Applying recommendations.0003_rename_recommendat_user_id_4d5e6f_idx_recommendat_user_id_e533fa_idx_and_more... OK
+  Applying role_management.0002_rolepermissionassignment_and_more... OK
+  Applying sessions.0001_initial... OK
+  Applying social_django.0001_initial... OK
+  Applying social_django.0002_add_related_name... OK
+  Applying social_django.0003_alter_email_max_length... OK
+  Applying social_django.0004_auto_20160423_0400... OK
+  Applying social_django.0005_auto_20160727_2333... OK
+  Applying social_django.0006_partial... OK
+  Applying social_django.0007_code_timestamp... OK
+  Applying social_django.0008_partial_timestamp... OK
+  Applying social_django.0009_auto_20191118_0520... OK
+  Applying social_django.0010_uid_db_index... OK
+  Applying social_django.0011_alter_id_fields... OK
+  Applying social_django.0012_usersocialauth_extra_data_new... OK
+  Applying social_django.0013_migrate_extra_data... OK
+  Applying social_django.0014_remove_usersocialauth_extra_data... OK
+  Applying social_django.0015_rename_extra_data_new_usersocialauth_extra_data...test_platform_metrics_creation (analytics.tests.AnalyticsModelsTest.test_platform_metrics_creation)
+Test platform metrics model creation ... /Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField User.date_joined received a naive datetime (2025-08-28 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField Course.created_at received a naive datetime (2025-08-28 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField Course.published_at received a naive datetime (2025-08-28 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField Order.completed_at received a naive datetime (2025-08-28 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1612: RuntimeWarning: DateTimeField Enrollment.enrolled_at received a naive datetime (2025-08-28 00:00:00) while time zone support is active.
+  warnings.warn(
+ERROR
+
+======================================================================
+ERROR: test_platform_metrics_creation (analytics.tests.AnalyticsModelsTest.test_platform_metrics_creation)
+Test platform metrics model creation
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: platform_metrics.date
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/analytics/tests.py", line 43, in test_platform_metrics_creation
+    metrics = PlatformMetrics.objects.create(
+        date=date.today(),
+    ...<2 lines>...
+        total_revenue=Decimal('1000.00')
+    )
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: platform_metrics.date
+
+----------------------------------------------------------------------
+Ran 1 test in 0.378s
+
+FAILED (errors=1)
+Preserving test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+ OK
+System check identified no issues (0 silenced).

@@ -10,6 +10,7 @@ from typing import Any
 
 from .models import PlatformMetrics, InstructorMetrics, CourseMetrics, StudentMetrics
 from .services import AnalyticsService
+from courses.models import Course  # Import Course model properly
 
 User = get_user_model()
 
@@ -40,11 +41,14 @@ class AnalyticsModelsTest(TestCase):
     
     def test_platform_metrics_creation(self):
         """Test platform metrics model creation"""
-        metrics = PlatformMetrics.objects.create(
+        # Use get_or_create to avoid UNIQUE constraint issues in tests
+        metrics, created = PlatformMetrics.objects.get_or_create(
             date=date.today(),
-            total_users=100,
-            total_courses=50,
-            total_revenue=Decimal('1000.00')
+            defaults={
+                'total_users': 100,
+                'total_courses': 50,
+                'total_revenue': Decimal('1000.00')
+            }
         )
         
         self.assertEqual(metrics.total_users, 100)
@@ -224,7 +228,7 @@ class AnalyticsAPITest(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
     
-    @patch('analytics.views.Course')
+    @patch('courses.models.Course')
     def test_course_analytics_access_control(self, mock_course):
         """Test course analytics access control"""
         # Mock course
@@ -252,11 +256,13 @@ class AnalyticsAPITest(APITestCase):
         """Test platform metrics list endpoint"""
         url = reverse('platform_metrics_list')
         
-        # Create test metrics
-        PlatformMetrics.objects.create(
+        # Create test metrics using get_or_create to avoid UNIQUE constraint issues
+        metrics, created = PlatformMetrics.objects.get_or_create(
             date=date.today(),
-            total_users=100,
-            total_courses=50
+            defaults={
+                'total_users': 100,
+                'total_courses': 50
+            }
         )
         
         # Test admin access

@@ -456,13 +456,15 @@ class RoleRequestModelTest(TestCase):
     
     def test_unique_pending_request_constraint(self):
         """Test unique constraint for pending requests"""
+        # Create first pending request
         UserRoleRequest.objects.create(
             user=self.user,
             requested_role=self.instructor_role,
             justification='First request'
         )
         
-        # This should raise an integrity error due to unique constraint
+        # Try to create a second pending request for the same user and role
+        # This should raise an IntegrityError due to unique constraint
         from django.db import IntegrityError
         with self.assertRaises(IntegrityError):
             UserRoleRequest.objects.create(

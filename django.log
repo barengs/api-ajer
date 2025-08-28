@@ -1641,3 +1641,167 @@ Forbidden: /api/v1/payments/financial/admin/dashboard/
 Bad Request: /api/v1/role-management/users/bulk-assign-roles/
 Forbidden: /api/v1/role-management/statistics/
 Bad Request: /api/v1/role-management/users/bulk-assign-roles/
+Bad Request: /api/v1/analytics/instructor/
+Forbidden: /api/v1/analytics/instructor/
+Unauthorized: /api/v1/analytics/platform/
+Forbidden: /api/v1/analytics/platform/
+Forbidden: /api/v1/analytics/platform/
+Internal Server Error: /api/v1/analytics/platform/
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/renderers.py", line 99, in render
+    ret = json.dumps(
+        data, cls=self.encoder_class,
+        indent=indent, ensure_ascii=self.ensure_ascii,
+        allow_nan=not self.strict, separators=separators
+    )
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py", line 261, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+           ~~~~~~~~~~~~~~~^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type User is not JSON serializable
+Bad Request: /api/v1/analytics/instructor/update/
+Forbidden: /api/v1/gamification/admin/award-points/
+Bad Request: /api/v1/gamification/daily-login/
+Bad Request: /api/v1/navigation/items/
+Forbidden: /api/v1/navigation/groups/
+Not Found: /api/v1/navigation/items/1/
+Forbidden: /api/v1/navigation/groups/
+Forbidden: /api/v1/navigation/items/1/
+Method Not Allowed: /api/v1/oauth/google/
+Bad Request: /api/v1/oauth/google/
+Forbidden: /api/v1/payments/financial/admin/dashboard/
+Forbidden: /api/v1/payments/admin/payouts/process/
+Forbidden: /api/v1/payments/admin/reports/
+Forbidden: /api/v1/payments/financial/admin/dashboard/
+Forbidden: /api/v1/role-management/statistics/
+Bad Request: /api/v1/analytics/instructor/
+Forbidden: /api/v1/analytics/instructor/
+Unauthorized: /api/v1/analytics/platform/
+Forbidden: /api/v1/analytics/platform/
+Forbidden: /api/v1/analytics/platform/
+Internal Server Error: /api/v1/analytics/platform/
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/renderers.py", line 99, in render
+    ret = json.dumps(
+        data, cls=self.encoder_class,
+        indent=indent, ensure_ascii=self.ensure_ascii,
+        allow_nan=not self.strict, separators=separators
+    )
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py", line 261, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+           ~~~~~~~~~~~~~~~^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type User is not JSON serializable
+Bad Request: /api/v1/analytics/instructor/update/
+Forbidden: /api/v1/gamification/admin/award-points/
+Bad Request: /api/v1/gamification/daily-login/
+Bad Request: /api/v1/navigation/items/
+Forbidden: /api/v1/navigation/groups/
+Not Found: /api/v1/navigation/items/1/
+Forbidden: /api/v1/navigation/groups/
+Forbidden: /api/v1/navigation/items/1/
+Forbidden: /api/v1/payments/financial/admin/dashboard/
+Forbidden: /api/v1/payments/admin/payouts/process/
+Forbidden: /api/v1/payments/admin/reports/
+Forbidden: /api/v1/payments/financial/admin/dashboard/
+Forbidden: /api/v1/role-management/statistics/
+Method Not Allowed: /api/v1/oauth/google/
+Bad Request: /api/v1/oauth/google/
+Bad Request: /api/v1/analytics/instructor/
+Forbidden: /api/v1/analytics/instructor/
+Unauthorized: /api/v1/analytics/platform/
+Forbidden: /api/v1/analytics/platform/
+Forbidden: /api/v1/analytics/platform/
+Internal Server Error: /api/v1/analytics/platform/
+Traceback (most recent call last):
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/renderers.py", line 99, in render
+    ret = json.dumps(
+        data, cls=self.encoder_class,
+        indent=indent, ensure_ascii=self.ensure_ascii,
+        allow_nan=not self.strict, separators=separators
+    )
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py", line 261, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/ROFI/Develop/proyek/hybridLms/venv/lib/python3.13/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+           ~~~~~~~~~~~~~~~^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type PlatformMetrics is not JSON serializable
+Bad Request: /api/v1/analytics/instructor/update/
+Forbidden: /api/v1/gamification/admin/award-points/
+Bad Request: /api/v1/gamification/daily-login/
+Bad Request: /api/v1/navigation/items/
+Forbidden: /api/v1/navigation/groups/
+Not Found: /api/v1/navigation/items/1/
+Forbidden: /api/v1/navigation/groups/
+Forbidden: /api/v1/navigation/items/1/
+Method Not Allowed: /api/v1/oauth/google/
+Bad Request: /api/v1/oauth/google/
+Forbidden: /api/v1/payments/financial/admin/dashboard/
+Forbidden: /api/v1/payments/admin/payouts/process/
+Forbidden: /api/v1/payments/admin/reports/
+Forbidden: /api/v1/payments/financial/admin/dashboard/
+Forbidden: /api/v1/role-management/statistics/
+Bad Request: /api/v1/analytics/course/
+Bad Request: /api/v1/analytics/instructor/update/
