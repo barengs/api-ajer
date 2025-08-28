@@ -108,7 +108,7 @@ jobs:
           username: ${{ secrets.RUMAHWEB_USER }}
           key: ${{ secrets.RUMAHWEB_SSH_KEY }}
           source: "hybridlms-deployment.tar.gz"
-          target: "/home/${{ secrets.RUMAHWEB_USER }}/api.lms/"
+          target: "/home/${{ secrets.RUMAHWEB_USER }}/api_lms/"
           strip_components: 0
 
       - name: Execute remote deployment commands
@@ -118,17 +118,17 @@ jobs:
           username: ${{ secrets.RUMAHWEB_USER }}
           key: ${{ secrets.RUMAHWEB_SSH_KEY }}
           script: |
-            cd /home/${{ secrets.RUMAHWEB_USER }}/api.lms/
+            cd /home/${{ secrets.RUMAHWEB_USER }}/api_lms/
             tar -xzf hybridlms-deployment.tar.gz
             cd hybridlms-deployment
 
             # Activate virtual environment if it exists
-            if [ -d "/home/${{ secrets.RUMAHWEB_USER }}/venv" ]; then
-              source /home/${{ secrets.RUMAHWEB_USER }}/venv/bin/activate
+            if [ -d "/home/${{ secrets.RUMAHWEB_USER }}/virtualvenv" ]; then
+              source /home/${{ secrets.RUMAHWEB_USER }}/virtualvenv/api_lms/3.11/bin/activate
             else
               # Create virtual environment if it doesn't exist
-              python3.11 -m venv /home/${{ secrets.RUMAHWEB_USER }}/venv
-              source /home/${{ secrets.RUMAHWEB_USER }}/venv/bin/activate
+              python3.11 -m venv /home/${{ secrets.RUMAHWEB_USER }}/virtualvenv
+              source /home/${{ secrets.RUMAHWEB_USER }}/virtualvenv/api_lms/3.11/bin/activate
             fi
 
             # Install/update dependencies
