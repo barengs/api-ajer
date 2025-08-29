@@ -102,7 +102,7 @@ jobs:
           cp deploy.sh deployment/
 
           # Create a tarball for deployment
-          tar -czf hybridlms-deployment.tar.gz -C deployment .
+          tar -czf hybridlms.tar.gz -C deployment .
 
       - name: Deploy via SCP
         uses: appleboy/scp-action@v1
@@ -112,7 +112,7 @@ jobs:
           password: ${{ secrets.RUMAHWEB_SSH_PASS }}
           key: ${{ secrets.RUMAHWEB_SSH_KEY }}
           port: ${{ secrets.RUMAHWEB_SSH_PORT }}
-          source: "hybridlms-deployment.tar.gz"
+          source: "hybridlms.tar.gz"
           target: "/home/${{ secrets.RUMAHWEB_USER }}/api_lms/"
           strip_components: 0
 
@@ -124,8 +124,8 @@ jobs:
           key: ${{ secrets.RUMAHWEB_SSH_KEY }}
           script: |
             cd /home/${{ secrets.RUMAHWEB_USER }}/api_lms/
-            tar -xzf hybridlms-deployment.tar.gz
-            cd hybridlms-deployment
+            tar -xzf hybridlms.tar.gz
+            cd hybridlms
 
             # Activate virtual environment if it exists
             if [ -d "/home/${{ secrets.RUMAHWEB_USER }}/virtualvenv" ]; then
@@ -145,7 +145,7 @@ jobs:
             ./deploy.sh
 
             # Collect static files
-            python manage.py collectstatic --noinput --settings=hybrid_lms.settings_prod
+            # python manage.py collectstatic --noinput --settings=hybrid_lms.settings_prod
 
             # Run migrations
             python manage.py migrate --settings=hybrid_lms.settings_prod
