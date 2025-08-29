@@ -1899,3 +1899,7 @@ Forbidden: /api/v1/payments/admin/payouts/process/
 Forbidden: /api/v1/payments/admin/reports/
 Forbidden: /api/v1/payments/financial/admin/dashboard/
 Forbidden: /api/v1/role-management/statistics/
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+"GET /api/docs/ HTTP/1.1" 200 4719
+"GET /api/schema/ HTTP/1.1" 200 1101373
