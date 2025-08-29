@@ -105,7 +105,7 @@ jobs:
           tar -czf hybridlms-deployment.tar.gz -C deployment .
 
       - name: Deploy via SCP
-        uses: appleboy/scp-action@v0master
+        uses: appleboy/scp-action@v1
         with:
           host: ${{ secrets.RUMAHWEB_HOST }}
           username: ${{ secrets.RUMAHWEB_USER }}
